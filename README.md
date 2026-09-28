@@ -83,7 +83,7 @@ Layer 4 — the sort encoding and the B_n/E_n presentation (paper §6.3)
 
 ## Building
 
-Lean `v4.33.0`, Mathlib pinned in `lake-manifest.json`.
+Lean `v4.34.0`, Mathlib `v4.34.0` and the `Foundation` library (first-order logic with completeness, used by `Solid/FO`) pinned in `lake-manifest.json`.
 
     lake build Solid                    # ~700 jobs
     lake env lean scratch/Axioms.lean   # axiom report for every main theorem

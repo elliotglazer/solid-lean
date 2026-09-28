@@ -2,7 +2,7 @@
 
 Companion to `Solid-idealized-Lean.md` (section numbers below refer to it) and to its §8, which gives the claim-by-claim status. This file is the map of the Lean development `Solid/`: the statement that is checked, the architecture in import order, the design decisions that differ from the paper's presentation, and the points at which the formalization refines the text.
 
-Everything in `Solid/` compiles with Lean 4.33.0 and Mathlib v4.33.0, with no `sorry`; every theorem named here depends only on the axioms `propext`, `Classical.choice`, `Quot.sound` (`lake env lean scratch/Axioms.lean`). 65 modules, about 22,000 lines.
+Everything in `Solid/` compiles with Lean 4.34.0 and Mathlib v4.34.0, with no `sorry`; every theorem named here depends only on the axioms `propext`, `Classical.choice`, `Quot.sound` (`lake env lean scratch/Axioms.lean`). 65 modules, about 22,000 lines.
 
 ## 1. What is checked
 
