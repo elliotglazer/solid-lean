@@ -62,5 +62,11 @@ open SolidLean.Calc in #print axioms SolidLean.Calc.TL_expand
 #check @SolidLean.Calc.H_truth
 #print axioms SolidLean.Calc.TL_truth
 #check @SolidLean.Calc.TL_truth
+#print axioms SolidLean.Solid.ClauseFamily.models_iff_isGenModel
+#check @SolidLean.Solid.ClauseFamily.models_iff_isGenModel
+#print axioms SolidLean.Solid.Render.provable_iff_semantic
+#check @SolidLean.Solid.Render.provable_iff_semantic
+#print axioms SolidLean.Calc.TL_conservative
+#check @SolidLean.Calc.TL_conservative
 #print SolidLean.Calc.H_FO
 #print SolidLean.Calc.TL_FO

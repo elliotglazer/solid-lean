@@ -66,5 +66,7 @@ import Solid.Calc.BE
 import Solid.FO.Notions
 import Solid.FO.Axioms
 import Solid.FO.Bridge
+import Solid.FO.Sound
 import Solid.FO.Render
 import Solid.FO.Provable
+import Solid.FO.Conservative

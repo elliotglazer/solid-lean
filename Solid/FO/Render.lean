@@ -1,5 +1,6 @@
 import Foundation.FirstOrder.LK.Completeness
 import Solid.FO.Bridge
+import Solid.FO.Sound
 
 /-!
 # The single-sorted rendering, and provability by completeness
@@ -11,10 +12,14 @@ becomes the designated equality relation.  A first-order structure of the
 rendered language whose equality is real determines a sorted structure
 (`Render.sorted`), and satisfaction is preserved (`Render.tr_sat`).
 
-Combined with `FO/Bridge.lean` and Foundation's completeness theorem, this
-gives the passage from "true in every semantic model of `T(𝔉)`" to "derivable
-from the rendered axioms of `T(𝔉)`" (`Render.provable_of_semantic`): the
-derivability relation `⊢` is Foundation's sequent calculus `LK`.
+Conversely a sorted structure determines a first-order structure on the union
+of its sorts (`Render.unsorted`), again preserving satisfaction
+(`Render.tr_sat'`).
+
+Combined with `FO/Bridge.lean`, `FO/Sound.lean` and Foundation's soundness and
+completeness theorems, this gives: a sentence is derivable in Foundation's
+sequent calculus `LK` from the rendered axioms of `T(𝔉)` iff it is true in
+every semantic model of `T(𝔉)` (`Render.provable_iff_semantic`).
 -/
 
 universe u v
@@ -190,6 +195,127 @@ theorem models_of_models [Nonempty D] [Tarski.Structure.Eq (lang Sig) D] (T : Se
   rw [holds_iff]
   exact models_iff.mp (h.models_set (mem_trT hσ))
 
+/-! ### The first-order structure of a sorted structure -/
+
+/-- The interpretation of the rendered relation symbols on the union of the
+sorts of a sorted structure. -/
+def interpRel (N : Str.{v} Sig) : {k : ℕ} → LRel Sig k → (Fin k → Sorted.El N.U) → Prop
+  | _, .rel r => fun v => v ∈ N.rel r
+  | _, .sort n => fun v => (v 0).1 = n
+  | _, .eq => fun v => v 0 = v 1
+
+/-- The single-sorted structure of a sorted structure: its domain is the
+union of the sorts. -/
+@[instance_reducible] def unsorted (N : Str.{v} Sig) : Tarski.Structure (lang Sig) (Sorted.El N.U) where
+  func _ f := f.elim
+  rel _ r := interpRel N r
+
+set_option linter.style.haveILetI false in
+theorem unsorted_eq (N : Str.{v} Sig) :
+    @Tarski.Structure.Eq (lang Sig) (Sorted.El N.U) (unsorted N) inferInstance := by
+  letI := unsorted N
+  refine ⟨fun a b => ?_⟩
+  show Semiformula.Eval (s := unsorted N) ![a, b] Empty.elim
+    (Semiformula.rel (L := lang Sig) LRel.eq Semiterm.bvar) ↔ a = b
+  rw [Semiformula.eval_rel]
+  exact Iff.rfl
+
+/-- The environment of a tuple, in the reversed order of the rendering. -/
+abbrev env' {N : Str.{v} Sig} {k : ℕ} (t : Fin k → Sorted.El N.U) : Fin k → Sorted.El N.U :=
+  fun i => t (Fin.rev i)
+
+theorem env'_snoc {N : Str.{v} Sig} {k : ℕ} (t : Fin k → Sorted.El N.U) (x : Sorted.El N.U) :
+    env' (Fin.snoc (α := fun _ => Sorted.El N.U) t x) = (x :> env' t) := by
+  funext i
+  refine Fin.cases ?_ (fun i => ?_) i
+  · simp [env', Fin.rev_zero]
+  · simp [env', Fin.rev_succ]
+
+/-- **Satisfaction is preserved by the rendering**, read in the single-sorted
+structure of a sorted structure. -/
+theorem tr_sat' (N : Str.{v} Sig) :
+    ∀ {k : ℕ} {s : Fin k → ℕ} (φ : Formula Sig k s) (t : Fin k → Sorted.El N.U),
+      (∀ i, (t i).1 = s i) →
+      (φ.Sat N t ↔ Semiformula.Eval (s := unsorted N) (env' t) Empty.elim (tr φ))
+  | _, _, .rel r v hv, t, ht => by
+    show (fun i => t (v i)) ∈ N.rel r ↔
+      Semiformula.Eval (s := unsorted N) (env' t) Empty.elim
+        (Semiformula.rel (L := lang Sig) (LRel.rel r) (fun i => Semiterm.bvar (Fin.rev (v i))))
+    rw [Semiformula.eval_rel]
+    have e : (Semiterm.val (L := lang Sig) (s := unsorted N) (env' t) Empty.elim ∘
+        fun i => Semiterm.bvar (Fin.rev (v i))) = fun i => t (v i) := by
+      funext i; simp [env']
+    rw [e]
+    exact Iff.rfl
+  | _, _, .eq i j h, t, ht => by
+    show t i = t j ↔ Semiformula.Eval (s := unsorted N) (env' t) Empty.elim
+      (Semiformula.rel (L := lang Sig) LRel.eq ![Semiterm.bvar (Fin.rev i), Semiterm.bvar (Fin.rev j)])
+    rw [Semiformula.eval_rel]
+    have e : (Semiterm.val (L := lang Sig) (s := unsorted N) (env' t) Empty.elim ∘
+        ![Semiterm.bvar (Fin.rev i), Semiterm.bvar (Fin.rev j)]) = ![t i, t j] := by
+      funext l; match l with | 0 => simp [env'] | 1 => simp [env']
+    rw [e]
+    exact Iff.rfl
+  | _, _, .false_, t, _ => by
+    show False ↔ Semiformula.Eval (s := unsorted N) (env' t) Empty.elim Semiformula.falsum
+    exact Iff.rfl
+  | _, _, .imp φ ψ, t, ht => by
+    show (_ → _) ↔ Semiformula.Eval (s := unsorted N) (env' t) Empty.elim (tr φ 🡒 tr ψ)
+    rw [LogicalConnective.HomClass.map_imply, FFL.LogicalConnective.Prop.arrow_eq,
+      tr_sat' N φ t ht, tr_sat' N ψ t ht]
+  | _, _, .ex n φ, t, ht => by
+    show (∃ x : Sorted.El N.U, x.1 = n ∧ φ.Sat N (Fin.snoc t x)) ↔
+      Semiformula.Eval (s := unsorted N) (env' t) Empty.elim (Semiformula.exs
+        (Semiformula.and (Semiformula.rel (L := lang Sig) (LRel.sort n) ![Semiterm.bvar 0]) (tr φ)))
+    refine Iff.trans ?_ Semiformula.eval_ex.symm
+    constructor
+    · rintro ⟨x, hx, hφ⟩
+      refine ⟨x, ?_⟩
+      show Semiformula.Eval (s := unsorted N) _ _
+        (Semiformula.rel (L := lang Sig) (LRel.sort n) ![Semiterm.bvar 0] ⋏ tr φ)
+      rw [LogicalConnective.HomClass.map_and, FFL.LogicalConnective.Prop.and_eq, Semiformula.eval_rel]
+      refine ⟨hx, ?_⟩
+      rw [← env'_snoc]
+      exact (tr_sat' N φ _ (by
+        intro i
+        refine Fin.lastCases ?_ (fun i => ?_) i
+        · simpa using hx
+        · simpa using ht i)).1 hφ
+    · rintro ⟨x, hx⟩
+      change Semiformula.Eval (s := unsorted N) _ _
+        (Semiformula.rel (L := lang Sig) (LRel.sort n) ![Semiterm.bvar 0] ⋏ tr φ) at hx
+      rw [LogicalConnective.HomClass.map_and, FFL.LogicalConnective.Prop.and_eq,
+        Semiformula.eval_rel] at hx
+      obtain ⟨hs, hφ⟩ := hx
+      have hs' : x.1 = n := hs
+      refine ⟨x, hs', ?_⟩
+      refine (tr_sat' N φ _ (by
+          intro i
+          refine Fin.lastCases ?_ (fun i => ?_) i
+          · simpa using hs'
+          · simpa using ht i)).2 ?_
+      rw [env'_snoc]
+      exact hφ
+
+theorem holds_iff_unsorted (N : Str.{v} Sig) (σ : Sentence Sig) :
+    Sentence.Holds σ N ↔ Semiformula.Realize (s := unsorted N) (Sorted.El N.U) (trS σ) := by
+  have e : env' (Fin.elim0 : Fin 0 → Sorted.El N.U) = ![] := funext fun i => i.elim0
+  have := tr_sat' N σ Fin.elim0 (fun i => i.elim0)
+  rw [e] at this
+  exact this
+
+set_option linter.style.haveILetI false in
+/-- The single-sorted structure of a sorted model of `T` is a model of the
+rendered theory. -/
+theorem unsorted_models (N : Str.{v} Sig) [Nonempty (Sorted.El N.U)] (T : Set (Sentence Sig))
+    (h : N.Models T) : (@Language.str (Sorted.El N.U) _ (lang Sig) (unsorted N)) ⊧* trT T := by
+  letI := unsorted N
+  haveI := unsorted_eq N
+  refine ⟨fun φ hφ => ?_⟩
+  rcases hφ with hφ | ⟨σ, hσ, rfl⟩
+  · exact (Tarski.Structure.Eq.models_eq (lang Sig) (Sorted.El N.U)).models_set hφ
+  · exact models_iff.2 ((holds_iff_unsorted N σ).1 (h σ hσ))
+
 /-! ### Provability by completeness -/
 
 /-- **Provability from semantic truth.**  A sentence true in every semantic
@@ -206,6 +332,37 @@ theorem provable_of_semantic {Sym : Type} {arity : Sym → ℕ} {sortAt : (f : S
   intro D _ _ _ hD
   rw [models_iff, ← holds_iff]
   exact h _ (ClauseFamily.isGenModel_of_models (models_of_models _ hD))
+
+set_option linter.style.haveILetI false in
+/-- **Semantic truth from provability** (soundness): a sentence derivable
+from the rendered axioms of `T(𝔉)` holds in every semantic model of
+`T(𝔉)`. -/
+theorem semantic_of_provable {Sym : Type} {arity : Sym → ℕ} {sortAt : (f : Sym) → Fin (arity f) → ℕ}
+    {φ : (f : Sym) → Formula TowerSig (arity f) (sortAt f)}
+    (σ : Sentence (ClauseFamily.ofFormulas.{v} Sym arity sortAt φ).sig)
+    (h : trT (ClauseFamily.TLax.{v} Sym arity sortAt φ) ⊢ trS σ)
+    (M : Str.{v} (ClauseFamily.ofFormulas.{v} Sym arity sortAt φ).sig)
+    (hM : (ClauseFamily.ofFormulas Sym arity sortAt φ).IsGenModel ⟨M, M.defSys⟩) :
+    Sentence.Holds σ M := by
+  obtain ⟨e, -⟩ := (hM.tower.zfc 0).empty
+  haveI : Nonempty (Sorted.El M.U) := ⟨Sorted.inj M.U e⟩
+  letI := unsorted M
+  have hmod := unsorted_models M _ (ClauseFamily.models_of_isGenModel hM)
+  have hσ := models_of_provable hmod h
+  rw [models_iff] at hσ
+  exact (holds_iff_unsorted M σ).2 hσ
+
+/-- **Derivability is truth in all semantic models**: for a clause family
+given by formulas, a sentence is derivable in `LK` from the rendered axioms
+of `T(𝔉)` iff it holds in every structure that is a model of `T(𝔉)` with its
+definable classes. -/
+theorem provable_iff_semantic {Sym : Type} {arity : Sym → ℕ} {sortAt : (f : Sym) → Fin (arity f) → ℕ}
+    {φ : (f : Sym) → Formula TowerSig (arity f) (sortAt f)}
+    (σ : Sentence (ClauseFamily.ofFormulas.{v} Sym arity sortAt φ).sig) :
+    trT (ClauseFamily.TLax.{v} Sym arity sortAt φ) ⊢ trS σ ↔
+      ∀ (M : Str.{v} (ClauseFamily.ofFormulas.{v} Sym arity sortAt φ).sig),
+        (ClauseFamily.ofFormulas Sym arity sortAt φ).IsGenModel ⟨M, M.defSys⟩ → Sentence.Holds σ M :=
+  ⟨semantic_of_provable σ, provable_of_semantic σ⟩
 
 end Render
 
