@@ -22,7 +22,7 @@ depends only on `propext`, `Classical.choice`, `Quot.sound`.
 | --- | --- |
 | `Solid-idealized-Lean.md` | The paper. Section numbers below refer to it; its §8 records, claim by claim, what is proved, what is sketched, and what is machine-checked. |
 | `FORMALIZATION.md` | The map of the Lean development: what is checked, the modules in import order, design decisions, and where the formalization refines the paper. |
-| `Solid/` | The library (72 files, ~25k lines). Depends on Mathlib and on the Foundation library (first-order logic with soundness and completeness). |
+| `Solid/` | The library (74 files, ~27k lines). Depends on Mathlib and on the Foundation library (first-order logic with soundness and completeness). |
 | `Solid/*.lean` (top level) | The many-sorted set tower H and its solidity (`tower_solid`). |
 | `Solid/Gen/` | Generic first-order machinery: signatures, interpretations, class systems, clause expansions and their solidity, the first-order bridge, definable-sort expansions. |
 | `Solid/Calc/` | The calculus L_ann: syntax, typing, evaluator clauses, semantics, soundness and adequacy, the theory T_L, the B_n/E_n presentation. |
@@ -61,6 +61,7 @@ Layer 3 — the calculus L_ann and T_L (paper §3–5)
 | Lemma 3.2 (classifier coherence) and the type-classifier invariant | `Calc/Typing.lean`: `cls_of_typed`; `Calc/TyOk.lean`: `tyOk_of_typed` |
 | T_L as a clause family; it is solid, with the models of H | `Calc/Theory.lean`: `LAnn`, `TL_solid`, `TL_expand` |
 | Adequacy (closed terms) | `Calc/Adequacy.lean`: `adequacy_closed` |
+| The primitive `dne` is redundant: a certified closed term of type `Π (P : U_0). ((P → False) → False) → P`, built from propositional choice, `propext`, Σ, Lift, Trunc and `Eq.rec` by Diaconescu's argument, derives the rule of `dne` in every well-formed context; the term does not mention `dne` | `Calc/Diaconescu.lean`: `dne_derivable`, `dne_derived`, `dneTerm_usesDne` |
 
 Layer 4 — the sort encoding and the B_n/E_n presentation (paper §6.3)
 
@@ -89,7 +90,7 @@ Layer 5 — the first-order presentation and provability (paper §2.1, §4, §6.
 2. `Solid/Solidity.lean` (the statement), `Solid/TowerTheory.lean` (the axioms).
 3. `Solid/Gen/Expansion.lean` (how solidity transfers to expansions).
 4. `Solid/Calc/Typing.lean` and `Solid/Calc/Eval.lean` (the calculus and its clauses),
-   then `Solid/Calc/Soundness.lean`.
+   then `Solid/Calc/Soundness.lean`; `Solid/Calc/Diaconescu.lean` for a derivation inside the calculus.
 5. `Solid/Gen/SortExp.lean` → `SortSolid.lean` → `Calc/BE.lean`.
 6. `Solid/FO/Axioms.lean` (the sentences), `FO/Bridge.lean` and `FO/Sound.lean`
    (sentences ⇔ semantic axioms), `FO/Render.lean` (the Foundation rendering,

@@ -70,3 +70,10 @@ open SolidLean.Calc in #print axioms SolidLean.Calc.TL_expand
 #check @SolidLean.Calc.TL_conservative
 #print SolidLean.Calc.H_FO
 #print SolidLean.Calc.TL_FO
+
+-- Double negation elimination is derivable (the primitive `dne` is redundant)
+#print axioms SolidLean.Calc.dne_derivable
+#check @SolidLean.Calc.dne_derivable
+#print axioms SolidLean.Calc.dne_derived
+#check @SolidLean.Calc.dne_derived
+#print axioms SolidLean.Calc.dneTerm_usesDne
