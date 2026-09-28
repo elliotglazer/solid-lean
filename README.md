@@ -22,10 +22,11 @@ depends only on `propext`, `Classical.choice`, `Quot.sound`.
 | --- | --- |
 | `Solid-idealized-Lean.md` | The paper. Section numbers below refer to it; its §8 records, claim by claim, what is proved, what is sketched, and what is machine-checked. |
 | `FORMALIZATION.md` | The map of the Lean development: what is checked, the modules in import order, design decisions, and where the formalization refines the paper. |
-| `Solid/` | The library (65 files, ~22k lines). Depends only on Mathlib. |
+| `Solid/` | The library (72 files, ~25k lines). Depends on Mathlib and on the Foundation library (first-order logic with soundness and completeness). |
 | `Solid/*.lean` (top level) | The many-sorted set tower H and its solidity (`tower_solid`). |
 | `Solid/Gen/` | Generic first-order machinery: signatures, interpretations, class systems, clause expansions and their solidity, the first-order bridge, definable-sort expansions. |
 | `Solid/Calc/` | The calculus L_ann: syntax, typing, evaluator clauses, semantics, soundness and adequacy, the theory T_L, the B_n/E_n presentation. |
+| `Solid/FO/` | H and T_L as first-order theories: the axioms as many-sorted sentences, their equivalence with the semantic axioms, the rendering in the Foundation library, and provability (Theorem 4.1 as an H-scheme, Claim 6.1 (i)–(ii), conservativity of T_L over H) by completeness. |
 | `Solid.lean` | Imports everything in `Solid/`. |
 | `scratch/Axioms.lean` | `#print axioms` for every main theorem. |
 
@@ -72,6 +73,16 @@ Layer 4 — the sort encoding and the B_n/E_n presentation (paper §6.3)
 | The B_n/E_n presentation of T_L; it is solid and has the same models as T_L | `Calc/BE.lean`: `BE`, `BE_solid`, `BE_expand`, `BE_reduct` |
 | Supporting machinery: pushing interpretations along codings, class-system operations, reduct systems | `Gen/Push.lean`, `Gen/ClassOps.lean`, `Gen/BaseSys.lean` |
 
+Layer 5 — the first-order presentation and provability (paper §2.1, §4, §6.3, §7.5)
+
+| Statement | Where |
+| --- | --- |
+| The axioms of H, and of any clause expansion T(𝔉), as many-sorted sentences: ZFC at every sort with Separation and Replacement as schemes, well-formedness of the tower symbols, the tower axioms, one defining axiom per symbol | `FO/Notions.lean`, `FO/Axioms.lean`: `Hax`, `TLax` |
+| A structure satisfies the sentences iff it is a semantic model with its definable classes | `FO/Bridge.lean`, `FO/Sound.lean`: `ClauseFamily.models_iff_isGenModel` |
+| The rendering in single-sorted first-order logic (sorts as predicates), both ways; derivability in the sequent calculus LK from the rendered axioms is exactly truth in every semantic model | `FO/Render.lean`: `Render.provable_iff_semantic` |
+| H and T_L as Foundation theories; Theorem 4.1 as an H-scheme, provably (every certified judgement's soundness sentence; every certified definitional equality); Claim 6.1 (i) and (ii) | `FO/Provable.lean`: `H_FO`, `TL_FO`, `H_soundness`, `H_soundness_defEq`, `TL_adequacy`, `H_truth`, `TL_truth` |
+| T_L is a conservative extension of H (§7.5 in the encoded presentation) | `FO/Conservative.lean`: `TL_conservative` |
+
 ## Suggested reading order
 
 1. The paper's introduction and §8, then `FORMALIZATION.md`.
@@ -80,12 +91,15 @@ Layer 4 — the sort encoding and the B_n/E_n presentation (paper §6.3)
 4. `Solid/Calc/Typing.lean` and `Solid/Calc/Eval.lean` (the calculus and its clauses),
    then `Solid/Calc/Soundness.lean`.
 5. `Solid/Gen/SortExp.lean` → `SortSolid.lean` → `Calc/BE.lean`.
+6. `Solid/FO/Axioms.lean` (the sentences), `FO/Bridge.lean` and `FO/Sound.lean`
+   (sentences ⇔ semantic axioms), `FO/Render.lean` (the Foundation rendering,
+   soundness and completeness), `FO/Provable.lean` (what H and T_L prove).
 
 ## Building
 
 Lean `v4.34.0`, Mathlib `v4.34.0` and the `Foundation` library (first-order logic with completeness, used by `Solid/FO`) pinned in `lake-manifest.json`.
 
-    lake build Solid                    # ~700 jobs
+    lake build Solid                    # ~1100 jobs (Mathlib and Foundation cones included)
     lake env lean scratch/Axioms.lean   # axiom report for every main theorem
 
 ## Where the formalization refines the paper
