@@ -6,7 +6,7 @@ import Solid.Gen.Clauses
 # Bridge, part 1: towers, formulas and definability
 
 The statement of `Palomar.Challenge` is written in its own self-contained
-many-sorted logic.  This file identifies it with the development's: a
+many-sorted logic.  This file identifies it with the development's.  A
 `Palomar.Tower` is a `MemTower`, the formulas of `Palomar.Formula` translate
 into the formulas of the tower signature `TowerSig` and back with the same
 satisfaction, and `Palomar`'s notion of definability is membership in the

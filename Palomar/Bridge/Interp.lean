@@ -7,7 +7,7 @@ import Solid.Gen.Translate
 
 A `Palomar` interpretation of the language of `H` in `T` is an interpretation
 of the development (`SInterp`) for the definable class system of `T`, with
-the same interpreted tower and the same presentation; presentations and their
+the same interpreted tower and the same presentation.  Presentations and their
 composites, and isomorphisms with their definability, correspond likewise.
 The translation lemma `SInterp.defSys_le_induced` says that the definable
 classes of the interpreted tower lie below the induced class system, which
@@ -44,7 +44,7 @@ namespace SInterp
 variable {U : ℕ → Type u} {𝒟 : ClassSys U} (I : SInterp U 𝒟)
 
 /-- **Translation lemma.**  Every relation first-order definable with
-parameters in the interpreted tower has admissible preimages: the definable
+parameters in the interpreted tower has admissible preimages, so the definable
 class system of `I.model` lies below the induced one. -/
 theorem defSys_le_induced : ∀ (k : ℕ) (C : Sorted.Rel I.Carrier k),
     C ∈ I.model.toStr.defSys.D k → C ∈ I.induced.D k := by

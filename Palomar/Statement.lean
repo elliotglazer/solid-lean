@@ -5,52 +5,52 @@ import Mathlib.Data.Fin.Tuple.Basic
 import Mathlib.Data.Set.Basic
 
 /-!
-# The tower theory `H` is solid — the statement
+# The tower theory `H` is solid: the statement
 
 `H` is the many-sorted first-order theory of a tower of universes
-`Z₀, Z₁, …`: each sort satisfies ZFC (with Separation and Replacement as
-schemes over all formulas of the language, parameters allowed); sort `Zₙ₊₁`
+`Z₀, Z₁, …`.  Each sort satisfies ZFC, with Separation and Replacement as
+schemes over all formulas of the language, parameters allowed.  Sort `Zₙ₊₁`
 carries a distinguished inaccessible cardinal `κₙ`, and the transition map
 `jₙ : Zₙ → Zₙ₊₁` is a membership isomorphism of `Zₙ` onto the rank segment
-`V(κₙ)`; `κₙ₊₁` is the least inaccessible above `jₙ₊₁(κₙ)`; and in `Z₁` there
+`V(κₙ)`.  `κₙ₊₁` is the least inaccessible above `jₙ₊₁(κₙ)`, and in `Z₁` there
 is no greatest inaccessible below `κ₀`.
 
-Enayat's *solidity*: a theory `T` is solid when, for models `M ⊳ N ⊳ P` (each
-interpreted in the previous one) with an `M`-definable isomorphism `M ≅ P`,
+A theory `T` is *solid* (Enayat) when, for models `M ⊳ N ⊳ P`, each
+interpreted in the previous one, with an `M`-definable isomorphism `M ≅ P`,
 there is an `M`-definable isomorphism `M ≅ N`.  Solid theories are tight, so
 `T` determines its models up to definable isomorphism in the way ZF and PA do.
 
 This file states that `H` is solid.  Everything is defined here, from the
-first-order syntax up; the only theorem, at the end, is `tower_theory_solid`,
+first-order syntax up.  The only theorem, at the end, is `tower_theory_solid`,
 to be proved elsewhere.  The many-sorted logic is written out rather than
-taken from a library: a structure for the language is a `Tower` (sorts,
+taken from a library.  A structure for the language is a `Tower` (sorts,
 membership, transition maps, distinguished cardinals), and `Formula` is the
 inductive type of its many-sorted first-order formulas, with satisfaction
 `Formula.Sat`.
 
 **Reading guide.**
-* `Tower`: a structure for the language; `El` is the disjoint union of its
+* `Tower` is a structure for the language; `El` is the disjoint union of its
   sorts and a relation of arity `k` is a set of `k`-tuples of `El`.
-* `Formula k s`: formulas with `k` free variables of sorts `s`, de Bruijn
-  style (`ex n φ` binds the last variable of `φ`, of sort `n`); the atoms are
-  membership and the transition graphs within a sort, the distinguished
-  cardinals, and equality.  `Definable T k C`: for each assignment of sorts to
-  the `k` coordinates, the tuples of `C` of those sorts are those satisfying
-  a formula with parameters.
-* `IsModelH T`: the axioms of `H`, with the schemes of Separation and
-  Replacement stated for all definable classes — i.e. `T` is a model of the
-  first-order theory `H`.
-* `Interp T`: a finitary interpretation of the language in `T` in
-  one-coordinate normal form (the `n`-th interpreted sort is a definable set
-  of elements of a single sort `a n` of `T`, modulo a definable equivalence;
-  in a model of `H` finite tuples are coded by single elements, so this loses
-  no generality — that reduction is not part of the statement).  `I.Model` is
+* `Formula k s` is the type of formulas with `k` free variables of sorts `s`,
+  de Bruijn style (`ex n φ` binds the last variable of `φ`, of sort `n`).  The
+  atoms are membership and the transition graphs within a sort, the
+  distinguished cardinals, and equality.  `Definable T k C` says that for each
+  assignment of sorts to the `k` coordinates, the tuples of `C` of those sorts
+  are the ones satisfying a formula with parameters.
+* `IsModelH T` is the conjunction of the axioms of `H`, with the schemes of
+  Separation and Replacement stated for all definable classes.  So `T` is a
+  model of the first-order theory `H`.
+* `Interp T` is a finitary interpretation of the language in `T` in
+  one-coordinate normal form.  The `n`-th interpreted sort is a definable set
+  of elements of a single sort `a n` of `T`, modulo a definable equivalence.
+  In a model of `H` finite tuples are coded by single elements, so this loses
+  no generality, but that reduction is not part of the statement.  `I.Model` is
   the interpreted tower and `I.pres` the presentation of its elements by
   elements of `T`.
 * `Iso T T'` is an isomorphism of towers, and `Iso.DefinableIn i pr` says that
   `i : Iso T P` is `T`-definable with respect to a presentation `pr` of `P`
   in `T`, sort by sort.
-* `Solid`: Enayat's condition for `H`, with `P = J.Model` presented in `T`
+* `Solid` is Enayat's condition for `H`, with `P = J.Model` presented in `T`
   through the composite presentation.
 -/
 
@@ -92,8 +92,8 @@ end Tower
 
 /-- Formulas with `k` free variables of sorts `s`.  `mem n i₀ i₁` is
 "`x_{i₀} ∈ x_{i₁}`" in sort `n`, `jmap n i₀ i₁` is "`x_{i₁} = jₙ x_{i₀}`",
-`kappa n i` is "`xᵢ = κₙ`", `eq i₀ i₁` is "`x_{i₀} = x_{i₁}`"; `ex n φ` binds the
-last variable of `φ`, of sort `n`. -/
+`kappa n i` is "`xᵢ = κₙ`", and `eq i₀ i₁` is "`x_{i₀} = x_{i₁}`".  `ex n φ` binds
+the last variable of `φ`, of sort `n`. -/
 inductive Formula : (k : ℕ) → (Fin k → ℕ) → Type
   | mem {k : ℕ} {s : Fin k → ℕ} (n : ℕ) (i₀ i₁ : Fin k) (h₀ : s i₀ = n) (h₁ : s i₁ = n) : Formula k s
   | jmap {k : ℕ} {s : Fin k → ℕ} (n : ℕ) (i₀ i₁ : Fin k) (h₀ : s i₀ = n) (h₁ : s i₁ = n + 1) :
@@ -118,10 +118,10 @@ namespace Tower
 
 variable (T : Tower.{u})
 
-/-- `C` is definable with parameters: for every assignment `s` of sorts to
-the coordinates, the tuples of `C` of sorts `s` are exactly those satisfying
-some formula `φ` at some parameters `p` (of sorts `ps`, placed before the
-coordinates). -/
+/-- `C` is definable with parameters.  For every assignment `s` of sorts to
+the coordinates, the tuples of `C` of sorts `s` are exactly the ones satisfying
+some formula `φ` at some parameters `p` of sorts `ps`, placed before the
+coordinates. -/
 def Definable (k : ℕ) (C : T.Rel k) : Prop :=
   ∀ s : Fin k → ℕ, ∃ (a : ℕ) (ps : Fin a → ℕ) (φ : Formula (a + k) (Fin.append ps s))
     (p : Fin a → T.El), (∀ i, (p i).1 = ps i) ∧
@@ -210,8 +210,8 @@ def NoGreatestInaccessibleBelow (κ : X) : Prop :=
   ∀ α, mem α κ → Inaccessible mem α → ∃ β, mem β κ ∧ mem α β ∧ Inaccessible mem β
 
 /-- The axioms of ZFC for `(X, mem)`, with Separation and Replacement for the
-classes satisfying `Def` (parameters are the leading coordinates; the
-quantified coordinate is last). -/
+classes satisfying `Def`.  Parameters are the leading coordinates and the
+quantified coordinate is last. -/
 structure SetAxioms (Def : (k : ℕ) → Set (Fin k → X) → Prop) : Prop where
   ext : ∀ x y, (∀ z, mem z x ↔ mem z y) → x = y
   empty : ∃ e, IsEmptySet mem e
@@ -233,10 +233,10 @@ end SetNotions
 
 /-! ### The axioms of `H` -/
 
-/-- `T` is a model of `H`: every sort satisfies ZFC, with the schemes for all
-definable classes; `jₙ` is injective and preserves membership; `κₙ` is
+/-- `T` is a model of `H`.  Every sort satisfies ZFC, with the schemes for all
+definable classes.  `jₙ` is injective and preserves membership.  `κₙ` is
 inaccessible in sort `n + 1` and the image of `jₙ` is the rank segment
-`V(κₙ)`; `κₙ₊₁` is the least inaccessible above `jₙ₊₁(κₙ)`; and there is no
+`V(κₙ)`.  `κₙ₊₁` is the least inaccessible above `jₙ₊₁(κₙ)`, and there is no
 greatest inaccessible below `κ₀`. -/
 structure Tower.IsModelH (T : Tower.{u}) : Prop where
   zfc : ∀ n, SetAxioms (T.mem (n := n)) (T.DefOn n)
@@ -251,8 +251,8 @@ structure Tower.IsModelH (T : Tower.{u}) : Prop where
 /-! ### Interpretations -/
 
 /-- A finitary interpretation of the language of `H` in `T`, in one-coordinate
-normal form: the `n`-th interpreted sort is the definable set `dom n` of
-elements of sort `a n`, modulo the definable equivalence `eqv n`; membership,
+normal form.  The `n`-th interpreted sort is the definable set `dom n` of
+elements of sort `a n`, modulo the definable equivalence `eqv n`.  Membership,
 the transition maps and the distinguished cardinals are given by definable
 relations respecting the equivalences. -/
 structure Interp (T : Tower.{u}) where
@@ -295,7 +295,7 @@ def setoid (n : ℕ) : Setoid (I.Dom n) where
   iseqv := ⟨fun x => I.eqv_refl n x.1 x.2, fun h => I.eqv_symm _ _ _ h,
     fun h h' => I.eqv_trans _ _ _ _ h h'⟩
 
-/-- Interpreted sort `n`: the quotient of the domain by the equivalence. -/
+/-- Interpreted sort `n`, the quotient of the domain by the equivalence. -/
 abbrev Carrier (n : ℕ) : Type u := Quotient (I.setoid n)
 
 /-- The class of a domain element. -/
@@ -338,7 +338,7 @@ end Interp
 
 /-! ### Presentations and definable isomorphisms -/
 
-/-- A presentation of the tower `P` inside the tower `T`: elements of sort `n`
+/-- A presentation of the tower `P` inside the tower `T`.  Elements of sort `n`
 of `P` are represented, surjectively, by elements of sort `a n` of `T`. -/
 structure Presentation (T P : Tower.{u}) where
   a : ℕ → ℕ
@@ -347,7 +347,7 @@ structure Presentation (T P : Tower.{u}) where
 
 namespace Presentation
 
-/-- Composition: represent `P` in `T` through `N`. -/
+/-- Composition, representing `P` in `T` through `N`. -/
 def comp {T N P : Tower.{u}} (p : Presentation T N) (q : Presentation N P) : Presentation T P where
   a n := p.a (q.a n)
   rep n x := (p.rep (q.a n) x).bind (q.rep n)
@@ -360,7 +360,7 @@ def comp {T N P : Tower.{u}} (p : Presentation T N) (q : Presentation N P) : Pre
 end Presentation
 
 open Classical in
-/-- The presentation of the interpreted tower in `T`: an element of the
+/-- The presentation of the interpreted tower in `T`.  An element of the
 domain of interpreted sort `n` represents its class. -/
 noncomputable def Interp.pres {T : Tower.{u}} (I : Interp T) : Presentation T I.Model where
   a := I.a
@@ -379,7 +379,7 @@ structure Iso (T N : Tower.{u}) where
   κ_comm : ∀ n, toFun (n + 1) (T.κ n) = N.κ n
 
 /-- `i : T → P` is `T`-definable with respect to the presentation `pr` of `P`
-in `T`: for every sort `n`, the relation "`y` represents `i x`" between
+in `T`.  For every sort `n`, the relation "`y` represents `i x`" between
 elements `x` of sort `n` and elements `y` of sort `pr.a n` is definable. -/
 def Iso.DefinableIn {T P : Tower.{u}} (i : Iso T P) (pr : Presentation T P) : Prop :=
   ∀ n, T.Definable 2 {t | ∃ (x : T.U n) (y : T.U (pr.a n)),

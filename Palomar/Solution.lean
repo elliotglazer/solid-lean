@@ -3,13 +3,13 @@ import Palomar.Bridge.Interp
 import Solid.Solidity
 
 /-!
-# The tower theory `H` is solid — the proof
+# The tower theory `H` is solid: the proof
 
 The target of `Palomar/Challenge.lean`, proved from the development's
-`tower_solid` (Theorem 2.1 of *Solid idealized Lean*): a `Palomar` model of
-`H` is a model of `H` with its definable class system, a `Palomar`
+`tower_solid` (Theorem 2.1 of *Solid idealized Lean*).  A `Palomar` model of
+`H` is a model of `H` with its definable class system.  A `Palomar`
 interpretation is an interpretation for that class system with the same
-interpreted tower, the definable classes of the interpreted tower lie below
+interpreted tower.  The definable classes of the interpreted tower lie below
 the induced ones (the translation lemma), and isomorphisms with their
 definability correspond.  This file imports `Palomar.Statement`, the
 generated copy of the definitions of the Challenge, never the Challenge

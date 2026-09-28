@@ -5,19 +5,20 @@ version: "v0.4"
 project:
   name: "solid-lean"
   description: >-
-    The tower theory H — the many-sorted first-order theory of a tower of ZFC universes
-    Z_0 ⊂ Z_1 ⊂ ⋯ cut at consecutive inaccessible cardinals, with transition maps j_n
-    identifying Z_n with the rank segment V(κ_n) of Z_{n+1} — is solid in Enayat's sense:
-    for models M ⊳ N ⊳ P, each interpreted in the previous one, with an M-definable
-    isomorphism M ≅ P, there is an M-definable isomorphism M ≅ N.  The registered statement
-    (Palomar/Challenge.lean) writes out the many-sorted first-order logic of H from scratch
-    (structures, formulas, satisfaction, definability with parameters), the axioms of H with
-    Separation and Replacement as schemes over all definable classes, finitary interpretations
-    in one-coordinate normal form (each interpreted sort is a definable subset of a single sort
-    modulo a definable equivalence; the reduction from tuple domains is not formalized),
-    presentations, and definable isomorphisms; the theorem is Theorem 2.1 of the accompanying
-    paper, "Solid idealized Lean", where it is the tower half of the bi-interpretability of an
-    idealized Lean with H.  The proof (Palomar/Solution.lean) is by reduction to the
+    The tower theory H is the many-sorted first-order theory of a tower of ZFC universes
+    Z_0, Z_1, ... cut at consecutive inaccessible cardinals, with transition maps j_n
+    identifying Z_n with the rank segment V(kappa_n) of Z_{n+1}.  H is solid in Enayat's
+    sense.  For models M, N, P, with N interpreted in M and P interpreted in N, and an
+    M-definable isomorphism between M and P, there is an M-definable isomorphism between M
+    and N.  The registered statement (Palomar/Challenge.lean) writes out the many-sorted
+    first-order logic of H from scratch, with structures, formulas, satisfaction and
+    definability with parameters.  It states the axioms of H with Separation and Replacement
+    as schemes over all definable classes, finitary interpretations in one-coordinate normal
+    form (each interpreted sort is a definable subset of a single sort modulo a definable
+    equivalence; the reduction from tuple domains is not formalized), presentations, and
+    definable isomorphisms.  The theorem is Theorem 2.1 of the accompanying paper, "Solid
+    idealized Lean", where it is the tower half of the bi-interpretability of an idealized
+    Lean with H.  The proof (Palomar/Solution.lean) reduces the statement to the
     development's semantic solidity theorem tower_solid.
   authors:
     - name: "Elliot Glazer"

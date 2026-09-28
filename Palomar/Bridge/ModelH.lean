@@ -5,7 +5,7 @@ import Solid.TowerTheory
 # Bridge, part 2: the axioms of `H`
 
 A `Palomar` model of `H` is a model of `H` in the development's sense, for
-the definable class system: `Tower.IsModelH T` gives
+the definable class system.  `Tower.IsModelH T` gives
 `IsTowerModel ⟨T.toMem, T.defSys⟩`.  The set-theoretic notions of the two
 files are the same definitions, so most clauses are definitional.
 -/
