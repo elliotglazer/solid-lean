@@ -44,3 +44,23 @@ open SolidLean.Calc in #print axioms SolidLean.Calc.TL_expand
 #print axioms SolidLean.Calc.BE_reduct
 #check @SolidLean.Calc.BE_expand
 #check @SolidLean.Calc.BE_reduct
+
+-- First-order presentation (FO/)
+#print axioms SolidLean.Solid.ClauseFamily.isGenModel_of_models
+#check @SolidLean.Solid.ClauseFamily.isGenModel_of_models
+#print axioms SolidLean.Solid.Render.tr_sat
+#print axioms SolidLean.Solid.Render.provable_of_semantic
+#check @SolidLean.Solid.Render.provable_of_semantic
+#print axioms SolidLean.Calc.H_soundness
+#check @SolidLean.Calc.H_soundness
+#print axioms SolidLean.Calc.H_soundness_defEq
+#check @SolidLean.Calc.H_soundness_defEq
+#print axioms SolidLean.Calc.TL_soundness
+#print axioms SolidLean.Calc.TL_adequacy
+#check @SolidLean.Calc.TL_adequacy
+#print axioms SolidLean.Calc.H_truth
+#check @SolidLean.Calc.H_truth
+#print axioms SolidLean.Calc.TL_truth
+#check @SolidLean.Calc.TL_truth
+#print SolidLean.Calc.H_FO
+#print SolidLean.Calc.TL_FO

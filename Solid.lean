@@ -63,3 +63,8 @@ import Solid.Gen.SortIso
 import Solid.Gen.SortSolid
 import Solid.Gen.SortExpand
 import Solid.Calc.BE
+import Solid.FO.Notions
+import Solid.FO.Axioms
+import Solid.FO.Bridge
+import Solid.FO.Render
+import Solid.FO.Provable
