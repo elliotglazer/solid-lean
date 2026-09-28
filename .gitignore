@@ -1,0 +1,7 @@
+.lake/
+*.log
+filelist.b64
+needed-modules.txt
+*.olean
+*.ilean
+refs/
