@@ -1,0 +1,6 @@
+{
+    "challenge_module": "Palomar.Challenge",
+    "solution_module": "Palomar.Solution",
+    "theorem_names": ["SolidLean.Palomar.tower_theory_solid"],
+    "permitted_axioms": ["propext", "Quot.sound", "Classical.choice"]
+}

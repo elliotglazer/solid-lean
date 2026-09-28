@@ -1,0 +1,97 @@
+# Registry metadata (mathlib-initiative formalization metadata, v0.4 conventions).
+# Validate with a YAML 1.2 parser: the MSC codes are quoted on purpose.
+version: "v0.4"
+
+project:
+  name: "solid-lean"
+  description: >-
+    The tower theory H — the many-sorted first-order theory of a tower of ZFC universes
+    Z_0 ⊂ Z_1 ⊂ ⋯ cut at consecutive inaccessible cardinals, with transition maps j_n
+    identifying Z_n with the rank segment V(κ_n) of Z_{n+1} — is solid in Enayat's sense:
+    for models M ⊳ N ⊳ P, each interpreted in the previous one, with an M-definable
+    isomorphism M ≅ P, there is an M-definable isomorphism M ≅ N.  The registered statement
+    (Palomar/Challenge.lean) writes out the many-sorted first-order logic of H from scratch
+    (structures, formulas, satisfaction, definability with parameters), the axioms of H with
+    Separation and Replacement as schemes over all definable classes, finitary interpretations
+    in one-coordinate normal form (each interpreted sort is a definable subset of a single sort
+    modulo a definable equivalence; the reduction from tuple domains is not formalized),
+    presentations, and definable isomorphisms; the theorem is Theorem 2.1 of the accompanying
+    paper, "Solid idealized Lean", where it is the tower half of the bi-interpretability of an
+    idealized Lean with H.  The proof (Palomar/Solution.lean) is by reduction to the
+    development's semantic solidity theorem tower_solid.
+  authors:
+    - name: "Elliot Glazer"
+  responsible_maintainers:
+    - name: "Elliot Glazer"
+      github: "elliotglazer"
+  license: "Apache-2.0"
+  repository: "https://github.com/elliotglazer/solid-lean"
+
+classification:
+  arxiv:
+    - "math.LO"
+  msc2020:
+    - "03C40"
+    - "03F25"
+    - "03E30"
+    - "03E55"
+    - "03B38"
+    - "03B35"
+
+statements:
+  - name: "SolidLean.Palomar.tower_theory_solid"
+    file: "Palomar/Challenge.lean"
+    description: "Enayat's solidity of the tower theory H (Theorem 2.1 of the paper), in one-coordinate normal form."
+
+verification:
+  comparator_config: "comparator.json"
+  challenge_module: "Palomar.Challenge"
+  solution_module: "Palomar.Solution"
+  lean: "v4.34.0"
+  mathlib: "v4.34.0"
+  axiom_audit: "scratch/Axioms.lean"
+
+automation:
+  methods:
+    - method: "ai-assistant"
+      details: >-
+        The Lean development, including the registered statement and its proof, was written by
+        Claude (Anthropic) working under the direction of the author, who designed the theory,
+        the mathematics of the solidity proof, and the statement; every proof is checked by the
+        Lean kernel, and the comparator checks the registered statement.
+
+review:
+  status: "unreviewed"
+
+sources:
+  - type: "paper"
+    title: "Solid idealized Lean"
+    authors: ["Elliot Glazer"]
+    url: "https://github.com/elliotglazer/solid-lean/blob/main/Solid-idealized-Lean.md"
+    relationship: "formalizes"
+    notes: "Theorem 2.1 (H is solid); the registered statement is its first-order form."
+  - type: "paper"
+    title: "Variations on a Visserian theme"
+    authors: ["Ali Enayat"]
+    url: "https://arxiv.org/abs/1702.07093"
+    relationship: "background"
+    notes: "Definitions of tight and solid theories; solidity of ZF."
+  - type: "paper"
+    title: "Corrigendum & Addendum to: Variations on a Visserian theme"
+    authors: ["Ali Enayat"]
+    url: "https://arxiv.org/abs/2602.15081"
+    relationship: "background"
+  - type: "web discussion"
+    title: "MathOverflow answer 507515"
+    url: "https://mathoverflow.net/a/507515"
+    relationship: "background"
+    notes: "Solidity of ZC + Ranks; origin of the no-greatest-inaccessible-below condition."
+
+related_formalizations:
+  - name: "Mathlib"
+    url: "https://github.com/leanprover-community/mathlib4"
+    relationship: "dependency"
+  - name: "Foundation (FormalizedFormalLogic)"
+    url: "https://github.com/FormalizedFormalLogic/Foundation"
+    relationship: "dependency"
+    notes: "Used by Solid/FO for the provability layer; not in the trust boundary of the registered statement."

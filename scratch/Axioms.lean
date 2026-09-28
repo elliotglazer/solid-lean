@@ -1,4 +1,5 @@
 import Solid
+import Palomar.Solution
 open SolidLean.Solid
 #print axioms SInterp.induced
 #print axioms TowerTheorySolid
@@ -77,3 +78,8 @@ open SolidLean.Calc in #print axioms SolidLean.Calc.TL_expand
 #print axioms SolidLean.Calc.dne_derived
 #check @SolidLean.Calc.dne_derived
 #print axioms SolidLean.Calc.dneTerm_usesDne
+
+-- The Palomar statement: Enayat's solidity of H in the self-contained many-sorted logic of
+-- Palomar/Challenge.lean (proved in Palomar/Solution.lean from tower_solid)
+#print axioms SolidLean.Palomar.tower_theory_solid
+#check @SolidLean.Palomar.tower_theory_solid

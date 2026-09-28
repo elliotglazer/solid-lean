@@ -1,0 +1,56 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  build-and-judge:
+    runs-on: ubuntu-latest
+    timeout-minutes: 240
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install elan
+        run: |
+          curl -sSfL https://github.com/leanprover/elan/releases/latest/download/elan-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          ./elan-init -y --default-toolchain none
+          echo "$HOME/.elan/bin" >> "$GITHUB_PATH"
+
+      - name: Cache dependencies and build products
+        uses: actions/cache@v4
+        with:
+          path: |
+            .lake
+          key: lake-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-${{ github.sha }}
+          restore-keys: |
+            lake-${{ runner.os }}-${{ hashFiles('lean-toolchain', 'lake-manifest.json') }}-
+
+      - name: Get Mathlib cache
+        run: lake exe cache get
+
+      - name: Build the development and the Palomar package
+        run: lake build Solid Palomar
+
+      - name: Statement.lean is the generated copy of the Challenge
+        run: python3 scripts/sync_statement.py --check
+
+      - name: Axiom audit (no sorryAx anywhere; targets on propext / Classical.choice / Quot.sound only)
+        run: |
+          lake env lean scratch/Axioms.lean | tee axioms.txt
+          if grep -q sorryAx axioms.txt; then echo "sorryAx found"; exit 1; fi
+          grep "SolidLean.Palomar.tower_theory_solid' depends on axioms: \[propext, Classical.choice, Quot.sound\]" axioms.txt
+
+      - name: Build lean4export (tag v4.34.0) and the comparator (its last v4.34.0 revision)
+        run: |
+          git clone --branch v4.34.0 --depth 1 https://github.com/leanprover/lean4export.git /tmp/lean4export
+          (cd /tmp/lean4export && lake build)
+          git clone https://github.com/leanprover/comparator.git /tmp/comparator
+          (cd /tmp/comparator && git checkout d03acab154d269c06e60e4de7e4cc85deebff94b && lake build comparator)
+
+      - name: Comparator (statement identity, permitted axioms, kernel replay; unsandboxed shim)
+        run: |
+          COMPARATOR_LANDRUN=/tmp/comparator/scripts/fake-landrun.sh \
+          COMPARATOR_LEAN4EXPORT=/tmp/lean4export/.lake/build/bin/lean4export \
+          lake env /tmp/comparator/.lake/build/bin/comparator comparator.json

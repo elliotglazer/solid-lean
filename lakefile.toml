@@ -11,6 +11,11 @@ rev = "v4.34.0"
 name = "Solid"
 roots = ["Solid"]
 
+[[lean_lib]]
+name = "Palomar"
+roots = ["Palomar.Challenge", "Palomar.Statement", "Palomar.Solution"]
+globs = ["Palomar.+"]
+
 [[require]]
 name = "Foundation"
 git = "https://github.com/FormalizedFormalLogic/Foundation.git"
