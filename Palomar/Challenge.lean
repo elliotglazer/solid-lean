@@ -397,7 +397,8 @@ def Solid : Prop :=
         ∀ (i : Iso T J.Model), i.DefinableIn (I.pres.comp J.pres) →
           ∃ h : Iso T I.Model, h.DefinableIn I.pres
 
-/-- **The tower theory `H` is solid** (Theorem 2.1 of *Solid idealized Lean*). -/
+/-- **The tower theory `H` is solid** (Theorem 2.1 of *Solid idealized Lean*), for
+interpretations in one-coordinate normal form. -/
 theorem tower_theory_solid : Solid.{u} := by
   sorry
 

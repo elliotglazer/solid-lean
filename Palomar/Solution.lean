@@ -22,7 +22,8 @@ namespace SolidLean.Palomar
 
 open SolidLean.Solid
 
-/-- **The tower theory `H` is solid** (Theorem 2.1 of *Solid idealized Lean*). -/
+/-- **The tower theory `H` is solid** (Theorem 2.1 of *Solid idealized Lean*), for
+interpretations in one-coordinate normal form. -/
 theorem tower_theory_solid : Solid.{u} := by
   intro T hT I hI J hJ i hi
   let M : TowerWithClasses.{u} := ⟨T.toMem, T.defSys⟩
