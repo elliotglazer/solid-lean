@@ -1,4 +1,6 @@
-import Solid.Def
+module
+
+public import Solid.Def
 
 /-!
 # Ordinals and the rank hierarchy, internally
@@ -12,6 +14,8 @@ results needed downstream are that attempts agree (`attempt_agree`), that
 `α ∉ V_α` (`IsV.not_mem_self`).  Each foundation argument comes with the
 definability certificate of the class it minimizes.
 -/
+
+@[expose] public section
 
 universe u
 

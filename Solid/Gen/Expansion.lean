@@ -1,6 +1,8 @@
-import Solid.Gen.GenInterp
-import Solid.Gen.Transport
-import Solid.Solidity
+module
+
+public import Solid.Gen.GenInterp
+public import Solid.Gen.Transport
+public import Solid.Solidity
 
 /-!
 # Expansions of the tower theory by clause-defined symbols
@@ -18,6 +20,8 @@ is presented as such an expansion in `Solid.Calc.Theory`.
 This file also constructs the canonical expansion of any model of `H`
 (`ClauseFamily.expand`), so that `T(𝔉)` is consistent relative to `H`.
 -/
+
+@[expose] public section
 
 universe u
 

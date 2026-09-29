@@ -1,5 +1,7 @@
-import Solid.Absolute
-import Solid.SortModel
+module
+
+public import Solid.Absolute
+public import Solid.SortModel
 
 /-!
 # Transitions of a tower model as inner embeddings
@@ -10,6 +12,8 @@ subsets (`Solid.Rank`).  Hence `j n`, and every iterated transition
 `liftLE`, is an `InnerEmb` between the sort models, and all the notions of
 `Solid.SetTheory` are absolute along them (`Solid.Absolute`).
 -/
+
+@[expose] public section
 
 universe u
 

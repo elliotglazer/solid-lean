@@ -1,4 +1,6 @@
-import Solid.Config
+module
+
+public import Solid.Config
 
 /-!
 # Step 5, second half: the finite-support cardinality obstruction
@@ -10,6 +12,8 @@ would then inject `M`-definably into sort `K` of `M`, i.e. into the set
 `V(κ K)` of sort `K+1`.  Replacement along the inverse of that injection
 would make the universe of sort `K+1` a set, a member of itself.
 -/
+
+@[expose] public section
 
 universe u
 

@@ -1,74 +1,78 @@
-import Solid.Tower
-import Solid.SetTheory
-import Solid.TowerTheory
-import Solid.Interpretation
-import Solid.Internal
-import Solid.Def
-import Solid.SortModel
-import Solid.Rank
-import Solid.Absolute
-import Solid.Lift
-import Solid.Mostowski
-import Solid.TDef
-import Solid.Graphs
-import Solid.Collapse
-import Solid.Config
-import Solid.Level
-import Solid.Step1
-import Solid.Step1b
-import Solid.Assemble
-import Solid.Step5
-import Solid.Step5b
-import Solid.Step6
-import Solid.Solidity
-import Solid.Gen.Core
-import Solid.Gen.Signature
-import Solid.Gen.GenInterp
-import Solid.Gen.Transport
-import Solid.Gen.Expansion
-import Solid.Gen.FO
-import Solid.Gen.Clauses
-import Solid.Calc.Syntax
-import Solid.Calc.TowerFormula
-import Solid.Calc.SetFormulas
-import Solid.Calc.Eval
-import Solid.Calc.Theory
-import Solid.Gen.Definable
-import Solid.Calc.Typing
-import Solid.Calc.Semantics
-import Solid.Calc.Contexts
-import Solid.Calc.Envs
-import Solid.Calc.Weakening
-import Solid.Calc.Substitution
-import Solid.Calc.Definability
-import Solid.Calc.Sets
-import Solid.Calc.TyOk
-import Solid.Calc.SnocLits
-import Solid.Calc.PrimSimpAttr
-import Solid.Calc.PrimClauses
-import Solid.Calc.PrimSemantics
-import Solid.Calc.PrimRel
-import Solid.Calc.PrimSets
-import Solid.Calc.SoundBase
-import Solid.Calc.PrimSound
-import Solid.Calc.PrimEq
-import Solid.Calc.Soundness
-import Solid.Calc.Adequacy
-import Solid.Gen.Translate
-import Solid.Gen.Push
-import Solid.Gen.ClassOps
-import Solid.Gen.BaseSys
-import Solid.Gen.SortExp
-import Solid.Gen.SortIso
-import Solid.Gen.SortSolid
-import Solid.Gen.SortExpand
-import Solid.Calc.BE
-import Solid.Calc.DiacSimp
-import Solid.Calc.Diaconescu
-import Solid.FO.Notions
-import Solid.FO.Axioms
-import Solid.FO.Bridge
-import Solid.FO.Sound
-import Solid.FO.Render
-import Solid.FO.Provable
-import Solid.FO.Conservative
+module
+
+public import Solid.Tower
+public import Solid.SetTheory
+public import Solid.TowerTheory
+public import Solid.Interpretation
+public import Solid.Internal
+public import Solid.Def
+public import Solid.SortModel
+public import Solid.Rank
+public import Solid.Absolute
+public import Solid.Lift
+public import Solid.Mostowski
+public import Solid.TDef
+public import Solid.Graphs
+public import Solid.Collapse
+public import Solid.Config
+public import Solid.Level
+public import Solid.Step1
+public import Solid.Step1b
+public import Solid.Assemble
+public import Solid.Step5
+public import Solid.Step5b
+public import Solid.Step6
+public import Solid.Solidity
+public import Solid.Gen.Core
+public import Solid.Gen.Signature
+public import Solid.Gen.GenInterp
+public import Solid.Gen.Transport
+public import Solid.Gen.Expansion
+public import Solid.Gen.FO
+public import Solid.Gen.Clauses
+public import Solid.Calc.Syntax
+public import Solid.Calc.TowerFormula
+public import Solid.Calc.SetFormulas
+public import Solid.Calc.Eval
+public import Solid.Calc.Theory
+public import Solid.Gen.Definable
+public import Solid.Calc.Typing
+public import Solid.Calc.Semantics
+public import Solid.Calc.Contexts
+public import Solid.Calc.Envs
+public import Solid.Calc.Weakening
+public import Solid.Calc.Substitution
+public import Solid.Calc.Definability
+public import Solid.Calc.Sets
+public import Solid.Calc.TyOk
+public import Solid.Calc.SnocLits
+public import Solid.Calc.PrimSimpAttr
+public import Solid.Calc.PrimClauses
+public import Solid.Calc.PrimSemantics
+public import Solid.Calc.PrimRel
+public import Solid.Calc.PrimSets
+public import Solid.Calc.SoundBase
+public import Solid.Calc.PrimSound
+public import Solid.Calc.PrimEq
+public import Solid.Calc.Soundness
+public import Solid.Calc.Adequacy
+public import Solid.Gen.Translate
+public import Solid.Gen.Push
+public import Solid.Gen.ClassOps
+public import Solid.Gen.BaseSys
+public import Solid.Gen.SortExp
+public import Solid.Gen.SortIso
+public import Solid.Gen.SortSolid
+public import Solid.Gen.SortExpand
+public import Solid.Calc.BE
+public import Solid.Calc.DiacSimp
+public import Solid.Calc.Diaconescu
+public import Solid.FO.Notions
+public import Solid.FO.Axioms
+public import Solid.FO.Bridge
+public import Solid.FO.Sound
+public import Solid.FO.Render
+public import Solid.FO.Provable
+public import Solid.FO.Conservative
+
+@[expose] public section

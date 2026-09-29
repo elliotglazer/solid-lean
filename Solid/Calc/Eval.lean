@@ -1,4 +1,6 @@
-import Solid.Calc.PrimClauses
+module
+
+public import Solid.Calc.PrimClauses
 
 /-!
 # The evaluator of the core calculus as formulas of the tower signature
@@ -17,6 +19,8 @@ The clauses are written for terms whose annotations are coherent (Lemma 3.2
 of draft 2 says that certified terms are); an incoherent term gets the
 formula `false`.
 -/
+
+@[expose] public section
 
 universe u
 

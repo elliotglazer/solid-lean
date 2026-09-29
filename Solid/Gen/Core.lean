@@ -1,4 +1,6 @@
-import Solid.Tower
+module
+
+public import Solid.Tower
 
 /-!
 # Sort-level interpretations and the induced class system
@@ -11,6 +13,8 @@ whose preimages under representation are admissible in the source.  This
 is the generic core shared by interpretations of the tower signature
 (`SInterp`) and of arbitrary relational signatures (`GenInterp`).
 -/
+
+@[expose] public section
 
 universe u
 

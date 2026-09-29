@@ -1,5 +1,7 @@
-import Solid.Calc.Envs
-import Solid.Calc.PrimSemantics
+module
+
+public import Solid.Calc.Envs
+public import Solid.Calc.PrimSemantics
 
 /-!
 # Semantic weakening: values are stable under insertion of binders
@@ -9,6 +11,8 @@ inserted at position `p` (at values `ξ`) is the value of `t` in the
 original context.  By structural induction on `t`, generalizing over the
 tail of the context (the binders crossed).
 -/
+
+@[expose] public section
 
 universe u
 

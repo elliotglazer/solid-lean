@@ -1,4 +1,6 @@
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import Mathlib.Data.Fin.Tuple.Basic
 
 /-!
 # `Fin.snoc` at literal indices (generated)
@@ -6,6 +8,8 @@ import Mathlib.Data.Fin.Tuple.Basic
 Evaluation of `Fin.snoc t z k` for literal `k`, for the arities the clause
 readings of the primitives need.  All are `rfl`.
 -/
+
+@[expose] public section
 
 namespace SolidLean.Solid.Fin
 

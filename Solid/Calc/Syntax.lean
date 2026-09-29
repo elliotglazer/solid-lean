@@ -1,5 +1,7 @@
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Data.Fin.Tuple.Basic
+module
+
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Data.Fin.Tuple.Basic
 
 /-!
 # The core of the annotated calculus `L_ann`: syntax and classifier
@@ -15,6 +17,8 @@ The classifier `c(Γ, e)` (the universe level of the type of `e`, read off
 the annotations) determines the sort of the value of `e`: the value of a term
 with classifier `c` lives in tower sort `c`.
 -/
+
+@[expose] public section
 
 namespace SolidLean.Calc
 

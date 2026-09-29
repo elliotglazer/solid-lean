@@ -1,5 +1,7 @@
-import Solid.Gen.Expansion
-import Solid.Gen.Clauses
+module
+
+public import Solid.Gen.Expansion
+public import Solid.Gen.Clauses
 
 /-!
 # Pushing an interpretation along a coding of its ambient carrier
@@ -18,6 +20,8 @@ along an isomorphism of ambient structures; the coding of an expanded
 structure into its base sorts (`SortExp.lean`) converts interpretations in a
 structure with definable extra sorts into interpretations in its reduct.
 -/
+
+@[expose] public section
 
 universe u
 

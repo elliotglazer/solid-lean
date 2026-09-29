@@ -1,5 +1,7 @@
-import Solid.Def
-import Solid.Interpretation
+module
+
+public import Solid.Def
+public import Solid.Interpretation
 
 /-!
 # Each sort of a tower model is a `ZFCModel`
@@ -11,6 +13,8 @@ classes (`IsTowerModel.sortModel`).  Through this, everything proved for an
 abstract `ZFCModel` in `Solid.Internal` and later files applies inside every
 sort of every model of `H`, including the interpreted ones.
 -/
+
+@[expose] public section
 
 universe u
 

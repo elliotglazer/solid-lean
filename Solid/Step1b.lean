@@ -1,4 +1,6 @@
-import Solid.Step1
+module
+
+public import Solid.Step1
 
 /-!
 # Steps 1 and 3: the collapse of one sort of `P`
@@ -14,6 +16,8 @@ Separation in `M` enter: an `N`-subset `z` of `e₀ q` determines the
 `M`-definable class `{x | e₀ (i x) ∈ z}` of sort `n` of `M`, contained in the
 members of `i⁻¹ q`; Separation makes it a set `x₁`, and `e₀ (i x₁) = z`.
 -/
+
+@[expose] public section
 
 universe u
 

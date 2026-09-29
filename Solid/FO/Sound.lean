@@ -1,4 +1,6 @@
-import Solid.FO.Bridge
+module
+
+public import Solid.FO.Bridge
 
 /-!
 # From semantic models to the sentences
@@ -9,6 +11,8 @@ sentence of `TLax` (`models_of_isGenModel`).  Together with
 `isGenModel_of_models` this identifies the sentences with the semantic
 axioms: `M.Models (TLax …) ↔ IsGenModel ⟨M, M.defSys⟩` (`models_iff_isGenModel`).
 -/
+
+@[expose] public section
 
 universe u
 

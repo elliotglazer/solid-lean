@@ -1,6 +1,8 @@
-import Solid.Calc.PrimSemantics
-import Solid.Calc.SnocLits
-import Solid.Calc.PrimSimpAttr
+module
+
+public import Solid.Calc.PrimSemantics
+public import Solid.Calc.SnocLits
+public import Solid.Calc.PrimSimpAttr
 
 /-!
 # Reading the clauses of the primitives
@@ -15,6 +17,8 @@ The proofs are uniform: unfold the quantifiers into sorted quantifiers
 (`exists_sorted`, `forall_sorted`), evaluate the positions (`snocL_*`), and
 read the atoms in their "∃ sorted witnesses" form (`Sat_*'`).
 -/
+
+@[expose] public section
 
 universe u
 

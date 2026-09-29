@@ -1,5 +1,7 @@
-import Solid.FO.Render
-import Solid.Calc.Adequacy
+module
+
+public import Solid.FO.Render
+public import Solid.Calc.Adequacy
 
 /-!
 # `H` and `T_L` as first-order theories, and what they prove
@@ -27,6 +29,8 @@ The sentences are built from the evaluator formulas by the explicit
 combinators below; their satisfaction is computed once (`Sat_concF`,
 `Sat_validF`) and matched against the semantic theorems.
 -/
+
+@[expose] public section
 
 universe u v
 

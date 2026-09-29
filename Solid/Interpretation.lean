@@ -1,5 +1,7 @@
-import Solid.TowerTheory
-import Solid.Gen.Core
+module
+
+public import Solid.TowerTheory
+public import Solid.Gen.Core
 
 /-!
 # Finitary interpretations, presentations, and definable isomorphisms
@@ -21,6 +23,8 @@ of another tower, so that a tower isomorphism can be called definable in `M`
 with respect to the presentation of its target.  Presentations compose,
 which is what lets `P` in `M ⊳ N ⊳ P` be presented in `M`.
 -/
+
+@[expose] public section
 
 universe u
 

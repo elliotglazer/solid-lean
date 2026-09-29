@@ -1,9 +1,11 @@
-import Solid.Calc.Syntax
-import Solid.Calc.SetFormulas
-import Solid.Gen.Definable
-import Solid.Calc.SnocLits
-import Mathlib.Tactic.FinCases
-import Mathlib.Data.Fintype.Basic
+module
+
+public import Solid.Calc.Syntax
+public import Solid.Calc.SetFormulas
+public import Solid.Gen.Definable
+public import Solid.Calc.SnocLits
+public import Mathlib.Tactic.FinCases
+public import Mathlib.Data.Fintype.Basic
 
 /-!
 # The evaluator clauses of the primitives (draft 2, §3.4 and §4.3)
@@ -14,6 +16,8 @@ application, of sorts `c.sorts`.  The generic evaluator clause `primF`
 (used by `eval`) quantifies the argument values, requires each to satisfy the
 argument's evaluator formula, and applies the clause.
 -/
+
+@[expose] public section
 
 universe u
 

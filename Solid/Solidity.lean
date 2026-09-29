@@ -1,7 +1,9 @@
-import Solid.Assemble
-import Solid.Step5
-import Solid.Step5b
-import Solid.Step6
+module
+
+public import Solid.Assemble
+public import Solid.Step5
+public import Solid.Step5b
+public import Solid.Step6
 
 /-!
 # Solidity of the tower theory
@@ -23,6 +25,8 @@ The proof follows the six steps of draft 2 §2:
   `N`;
 * Step 6 (`Solid.Step6`): assembly of the definable isomorphism.
 -/
+
+@[expose] public section
 
 universe u
 

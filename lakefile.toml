@@ -2,11 +2,6 @@ name = "solid-lean"
 version = "0.1.0"
 defaultTargets = ["Solid"]
 
-[[require]]
-name = "mathlib"
-git = "https://github.com/leanprover-community/mathlib4.git"
-rev = "v4.34.0"
-
 [[lean_lib]]
 name = "Solid"
 roots = ["Solid"]
@@ -20,3 +15,8 @@ globs = ["Palomar.+"]
 name = "Foundation"
 git = "https://github.com/FormalizedFormalLogic/Foundation.git"
 rev = "33f9f6859650a440dad9fd14aaa300553ba65e44"
+
+[[require]]
+name = "mathlib"
+git = "https://github.com/leanprover-community/mathlib4.git"
+rev = "v4.35.0-rc3"

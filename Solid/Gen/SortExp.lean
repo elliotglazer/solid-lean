@@ -1,5 +1,7 @@
-import Solid.Gen.BaseSys
-import Solid.Gen.Translate
+module
+
+public import Solid.Gen.BaseSys
+public import Solid.Gen.Translate
 
 /-!
 # Expansions by definable sorts
@@ -28,6 +30,8 @@ elements of the new sorts are replaced by their codes (`GenInterp.push`
 along the coding `SortExp.flat`), and definable isomorphisms transfer both
 ways.  This is the "trivial sort encoding" of draft 2 §6.3.
 -/
+
+@[expose] public section
 
 universe u
 

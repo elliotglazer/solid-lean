@@ -1,5 +1,7 @@
-import Solid.Calc.Sets
-import Solid.Calc.TyOk
+module
+
+public import Solid.Calc.Sets
+public import Solid.Calc.TyOk
 
 /-!
 # Soundness of the core calculus: motives and the core cases
@@ -12,6 +14,8 @@ motives (`Valid`, `PTy`, `PEq`) and proves the cases of the induction for
 the core constructors; the cases of the primitives are in `PrimSound.lean`
 and the induction itself in `Soundness.lean`.
 -/
+
+@[expose] public section
 
 universe u
 

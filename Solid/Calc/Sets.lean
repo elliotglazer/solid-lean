@@ -1,5 +1,7 @@
-import Solid.Calc.Definability
-import Solid.Lift
+module
+
+public import Solid.Calc.Definability
+public import Solid.Lift
 
 /-!
 # The sets the evaluator needs, in a model of `H`
@@ -9,6 +11,8 @@ dependent products and of graphs, in the sort models of a tower model, and
 the facts about universes that the soundness argument uses: the values of
 types are `j`-images, and level-`0` values are the empty set.
 -/
+
+@[expose] public section
 
 universe u
 

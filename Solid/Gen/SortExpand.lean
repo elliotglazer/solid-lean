@@ -1,4 +1,6 @@
-import Solid.Gen.SortSolid
+module
+
+public import Solid.Gen.SortSolid
 
 /-!
 # The canonical expansion of a model of `T(𝔉)` to a definable-sort expansion
@@ -15,6 +17,8 @@ with the induced class system is a model of the expanded theory
 Together with `SortExp.solid`, this is the equivalence of the two
 presentations: the models correspond, and solidity transfers.
 -/
+
+@[expose] public section
 
 universe u
 

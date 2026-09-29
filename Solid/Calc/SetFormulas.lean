@@ -1,5 +1,7 @@
-import Solid.Calc.TowerFormula
-import Solid.SetTheory
+module
+
+public import Solid.Calc.TowerFormula
+public import Solid.SetTheory
 
 /-!
 # Set-theoretic notions as formulas of the tower signature
@@ -9,6 +11,8 @@ a fixed sort `n` over a small context, to be instantiated at any positions by
 `TF.at`.  Each has a satisfaction lemma reading it through the definitions of
 `Solid.SetTheory` on the sort `T.sortStr n`.
 -/
+
+@[expose] public section
 
 universe u
 

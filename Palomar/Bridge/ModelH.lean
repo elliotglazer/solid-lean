@@ -1,5 +1,7 @@
-import Palomar.Bridge.Tower
-import Solid.TowerTheory
+module
+
+public import Palomar.Bridge.Tower
+public import Solid.TowerTheory
 
 /-!
 # Bridge, part 2: the axioms of `H`
@@ -9,6 +11,8 @@ the definable class system.  `Tower.IsModelH T` gives
 `IsTowerModel ⟨T.toMem, T.defSys⟩`.  The set-theoretic notions of the two
 files are the same definitions, so most clauses are definitional.
 -/
+
+@[expose] public section
 
 universe u
 

@@ -1,4 +1,6 @@
-import Solid.Collapse
+module
+
+public import Solid.Collapse
 
 /-!
 # Step 5, first half: the bottom collapsed height is at most `κ 0`
@@ -14,6 +16,8 @@ is the least inaccessible above `δ n` while `κ 0`, an inaccessible above
 `δ n`, is not the least one above anything (no greatest inaccessible below
 it).
 -/
+
+@[expose] public section
 
 universe u
 

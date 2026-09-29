@@ -1,4 +1,6 @@
-import Solid.SetTheory
+module
+
+public import Solid.SetTheory
 
 /-!
 # Internal set theory over a `ZFCModel`
@@ -13,6 +15,8 @@ difference, singletons, ordered pairs), foundation for definable classes,
 and the first facts about ordinals.  Transfinite recursion, the rank
 hierarchy, Mostowski collapse and Cantor follow in later files.
 -/
+
+@[expose] public section
 
 universe u
 

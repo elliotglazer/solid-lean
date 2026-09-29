@@ -1,4 +1,6 @@
-import Solid.Rank
+module
+
+public import Solid.Rank
 
 /-!
 # Absoluteness along inner embeddings
@@ -14,6 +16,8 @@ sets of the image, power sets) are subsets of sets in the image and hence in
 it.  The rank predicate `IsV` is shown upward absolute, which is all that is
 used.
 -/
+
+@[expose] public section
 
 universe u
 

@@ -1,4 +1,6 @@
-import Solid.Gen.Signature
+module
+
+public import Solid.Gen.Signature
 
 /-!
 # One-coordinate interpretations of a relational signature
@@ -10,6 +12,8 @@ definable class of source tuples respecting the equivalences.  The
 interpreted structure `model : Str Sig` carries the induced class system
 (`induced : StrSys model`).
 -/
+
+@[expose] public section
 
 universe u
 

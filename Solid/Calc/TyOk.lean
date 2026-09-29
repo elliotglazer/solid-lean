@@ -1,4 +1,6 @@
-import Solid.Calc.Contexts
+module
+
+public import Solid.Calc.Contexts
 
 /-!
 # Well-classified types
@@ -9,6 +11,8 @@ the domain and codomain of every product appearing as a type.  This is the
 part of "type correctness" that the evaluator's coherence guards need; it is
 proved by a direct induction on derivations, with no inversion.
 -/
+
+@[expose] public section
 
 namespace SolidLean.Calc
 

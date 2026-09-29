@@ -1,4 +1,6 @@
-import Solid.Gen.Clauses
+module
+
+public import Solid.Gen.Clauses
 
 /-!
 # Formulas of the tower signature: atoms, lifts, and set-theoretic notions
@@ -9,6 +11,8 @@ notions used by the evaluator (Kuratowski pairs, function application, the
 typing membership `j_r(x) ∈ A`).  Each comes with a satisfaction lemma
 reading it in a tower.
 -/
+
+@[expose] public section
 
 universe u
 

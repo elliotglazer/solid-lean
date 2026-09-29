@@ -1,5 +1,7 @@
-import Solid.Gen.Push
-import Solid.Gen.ClassOps
+module
+
+public import Solid.Gen.Push
+public import Solid.Gen.ClassOps
 
 /-!
 # The class system pulled back along a sort embedding
@@ -11,6 +13,8 @@ class system on `U` whose classes are those whose images, profile by profile,
 are classes of `𝒟'` (`Coding.baseSys`).  This is the class system of the
 reduct of a structure with extra sorts to its original sorts.
 -/
+
+@[expose] public section
 
 universe u
 

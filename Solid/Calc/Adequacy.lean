@@ -1,5 +1,7 @@
-import Solid.Calc.Theory
-import Solid.Calc.Soundness
+module
+
+public import Solid.Calc.Theory
+public import Solid.Calc.Soundness
 
 /-!
 # Adequacy: soundness read in the models of `T_L`
@@ -10,6 +12,8 @@ canonical `T_L`-model of a model of `H`, the symbol `R_{Γ,t}` of a certified
 term is the graph of a function of the valid environments (Theorem 4.1 read
 in `T_L`), and for a closed certified term it is a singleton.
 -/
+
+@[expose] public section
 
 universe u
 

@@ -1,6 +1,8 @@
-import Solid.Calc.SoundBase
-import Solid.Calc.PrimSound
-import Solid.Calc.PrimEq
+module
+
+public import Solid.Calc.SoundBase
+public import Solid.Calc.PrimSound
+public import Solid.Calc.PrimEq
 
 /-!
 # Soundness of the annotated calculus (draft 2, Theorem 4.1)
@@ -8,6 +10,8 @@ import Solid.Calc.PrimEq
 The induction on derivations, assembling the cases of `SoundBase.lean`
 (core constructors) and `PrimSound.lean` (primitives).
 -/
+
+@[expose] public section
 
 universe u
 

@@ -1,4 +1,6 @@
-import Solid.Calc.SetFormulas
+module
+
+public import Solid.Calc.SetFormulas
 
 /-!
 # The internal set-theoretic notions as formulas
@@ -13,6 +15,8 @@ This is what lets the axioms of `H` be written down as sentences
 The formulas mirror the definitions in `SetTheory.lean` connective by
 connective, so each satisfaction lemma is `simp only [...]; exact Iff.rfl`.
 -/
+
+@[expose] public section
 
 universe u
 

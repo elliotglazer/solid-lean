@@ -1,4 +1,6 @@
-import Solid.Calc.Syntax
+module
+
+public import Solid.Calc.Syntax
 
 /-!
 # Typing rules of the core calculus
@@ -13,6 +15,8 @@ impredicative `Prop`.
 The classifier reads the level off the annotations (Lemma 3.2 of draft 2:
 `cls_of_typed`), which is what makes the evaluator well defined on raw terms.
 -/
+
+@[expose] public section
 
 namespace SolidLean.Calc
 

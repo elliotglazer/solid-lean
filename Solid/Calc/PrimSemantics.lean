@@ -1,5 +1,7 @@
-import Solid.Calc.Semantics
-import Solid.Calc.Envs
+module
+
+public import Solid.Calc.Semantics
+public import Solid.Calc.Envs
 
 /-!
 # Reading the generic evaluator clause of primitive applications
@@ -9,6 +11,8 @@ arguments and the defining clause `c.clauseF` of the primitive, read at the
 tuple `(v̄, w)`.  The per-primitive readings of the clauses are in
 `PrimRel.lean`.
 -/
+
+@[expose] public section
 
 universe u
 

@@ -1,4 +1,6 @@
-import Solid.Calc.Typing
+module
+
+public import Solid.Calc.Typing
 
 /-!
 # Insertion and substitution on contexts and environments
@@ -11,6 +13,8 @@ the tail.  The lemmas relate these to extension by one binder at the end,
 which is what the inductive cases of the semantic weakening and substitution
 lemmas need.
 -/
+
+@[expose] public section
 
 namespace SolidLean.Calc
 

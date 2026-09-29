@@ -1,4 +1,6 @@
-import Solid.Absolute
+module
+
+public import Solid.Absolute
 
 /-!
 # The Mostowski collapse, internally
@@ -13,6 +15,8 @@ total by well-foundedness.  When `R` is extensional modulo a set
 equivalence `E`, the collapse identifies exactly `E`-related elements
 (`collapse_eq_iff`).
 -/
+
+@[expose] public section
 
 universe u
 

@@ -102,16 +102,16 @@ depends only on `propext`, `Classical.choice` and `Quot.sound`.
 
 ## Building
 
-Lean `v4.34.0`, Mathlib `v4.34.0` and the `Foundation` library (first-order logic with completeness, used by `Solid/FO`) are pinned in `lake-manifest.json`.
+Lean `v4.35.0-rc3`, Mathlib `v4.35.0-rc3` and the `Foundation` library (first-order logic with completeness, used by `Solid/FO`) are pinned in `lake-manifest.json`. Every file uses the module system (`module` header, `public import`, `@[expose] public section`), as the Palomar registry requires.
 
     lake build Solid Palomar            # ~1100 jobs (Mathlib and Foundation cones included)
     lake env lean scratch/Axioms.lean   # axiom report for every main theorem
     python3 scripts/sync_statement.py --check   # Palomar/Statement.lean is the copy of the Challenge
 
 To run the judge on the registered statement (`comparator.json`), build
-[`lean4export`](https://github.com/leanprover/lean4export) at tag `v4.34.0` and the
-[comparator](https://github.com/leanprover/comparator) at its last `v4.34.0` revision
-(`d03acab1`), then run from the repository root
+[`lean4export`](https://github.com/leanprover/lean4export) at tag `v4.35.0-rc3` and the
+[comparator](https://github.com/leanprover/comparator) at its `v4.35.0-rc3` revision
+(`fd5d5bcf`), then run from the repository root
 
     COMPARATOR_LANDRUN=<comparator>/scripts/fake-landrun.sh \
     COMPARATOR_LEAN4EXPORT=<lean4export>/.lake/build/bin/lean4export \

@@ -1,4 +1,6 @@
-import Solid.Calc.Weakening
+module
+
+public import Solid.Calc.Weakening
 
 /-!
 # Semantic substitution
@@ -10,6 +12,8 @@ value of `t` in the original context, provided the environment assigns
 `vs` to the variable `p`.  By structural induction on `t`, generalizing over
 the tail of the context.
 -/
+
+@[expose] public section
 
 universe u
 

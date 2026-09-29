@@ -1,5 +1,7 @@
-import Solid.Calc.Definability
-import Solid.Calc.Theory
+module
+
+public import Solid.Calc.Definability
+public import Solid.Calc.Theory
 
 /-!
 # The translation lemma of the first-order bridge
@@ -21,6 +23,8 @@ Instantiating the semantic solidity theorem `ClauseFamily.solid` with the
 definable class systems everywhere then gives Enayat's first-order statement
 (`ClauseFamily.solid_fo`), and for `T_L` in particular (`TL_solid_fo`).
 -/
+
+@[expose] public section
 
 universe u
 

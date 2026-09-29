@@ -18,9 +18,12 @@ def generate() -> str:
     src = CHALLENGE.read_text(encoding="utf-8")
     i = src.index(TARGET_MARKER)
     j = src.index(END_MARKER, i)
-    header = ("-- GENERATED from Palomar/Challenge.lean by scripts/sync_statement.py; do not edit.\n"
-              "-- The definitions of the Challenge, without its target theorem.\n")
-    return header + src[:i].rstrip("\n") + "\n\n" + src[j:]
+    note = ("-- GENERATED from Palomar/Challenge.lean by scripts/sync_statement.py; do not edit.\n"
+            "-- The definitions of the Challenge, without its target theorem.\n")
+    body = src[:i].rstrip("\n") + "\n\n" + src[j:]
+    # The file must begin with the `module` keyword; the note goes right after it.
+    assert body.startswith("module\n"), "Challenge.lean must begin with `module`"
+    return "module\n\n" + note + body[len("module\n"):].lstrip("\n")
 
 def main() -> int:
     new = generate()

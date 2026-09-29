@@ -1,6 +1,8 @@
-import Palomar.Bridge.ModelH
-import Solid.Interpretation
-import Solid.Gen.Translate
+module
+
+public import Palomar.Bridge.ModelH
+public import Solid.Interpretation
+public import Solid.Gen.Translate
 
 /-!
 # Bridge, part 3: interpretations, presentations and definable isomorphisms
@@ -13,6 +15,8 @@ The translation lemma `SInterp.defSys_le_induced` says that the definable
 classes of the interpreted tower lie below the induced class system, which
 is the hypothesis `𝒩 ⊆ I.induced` of `tower_solid`.
 -/
+
+@[expose] public section
 
 universe u
 

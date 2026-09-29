@@ -1,6 +1,8 @@
-import Solid.Calc.Typing
-import Solid.Calc.SnocLits
-import Solid.Calc.DiacSimp
+module
+
+public import Solid.Calc.Typing
+public import Solid.Calc.SnocLits
+public import Solid.Calc.DiacSimp
 
 /-!
 # Double negation elimination is derivable: Diaconescu's argument in the core calculus
@@ -45,6 +47,8 @@ compositional library computing `shift` and `subst` on all these encodings (the 
 `diac_simps`, used through `calc_simp`); and finally the derivation in the concrete
 contexts `Γ0 ⊂ … ⊂ Γ6`.
 -/
+
+@[expose] public section
 
 namespace SolidLean.Calc
 

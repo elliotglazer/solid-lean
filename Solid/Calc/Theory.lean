@@ -1,4 +1,6 @@
-import Solid.Calc.Eval
+module
+
+public import Solid.Calc.Eval
 
 /-!
 # The theory `T_L` of the core annotated calculus, and its solidity
@@ -9,6 +11,8 @@ the evaluator clause `eval Γ t` (draft 2, §6.3 in the set-encoded
 signature; the symbol `R_{Γ,t}` is the graph `⟦t⟧_Γ`).  Its models are the
 models of `H` (`ClauseFamily.expand`), and it is solid (`ClauseFamily.solid`).
 -/
+
+@[expose] public section
 
 universe u
 

@@ -1,5 +1,7 @@
-import Solid.Calc.SoundBase
-import Solid.Calc.PrimSets
+module
+
+public import Solid.Calc.SoundBase
+public import Solid.Calc.PrimSets
 
 /-!
 # Soundness: the cases of the primitives (draft 2, §3.4)
@@ -12,6 +14,8 @@ application's level.  The computation rules are sound as well.
 The cases are assembled by `case_prim` and `eq_prim_*`, used by the
 induction in `Soundness.lean`.
 -/
+
+@[expose] public section
 
 universe u
 

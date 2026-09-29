@@ -1,4 +1,6 @@
-import Solid.Calc.PrimSound
+module
+
+public import Solid.Calc.PrimSound
 
 /-!
 # Soundness: the computation rules of the primitives (draft 2, §3.4)
@@ -8,6 +10,8 @@ same values (and the left-hand side is certified).  Together with the
 congruence rule `DefEq.congrPrim`, these are the primitive cases of the
 induction in `Soundness.lean`.
 -/
+
+@[expose] public section
 
 universe u
 

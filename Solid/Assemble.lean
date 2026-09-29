@@ -1,4 +1,6 @@
-import Solid.Step1b
+module
+
+public import Solid.Step1b
 
 /-!
 # Steps 1–3 assembled: collapse data for the configuration
@@ -7,6 +9,8 @@ The collapses of the individual sorts (`Solid.Step1b`) are lifted to a
 monotone sequence of sorts `b n ≥ n + 1` of `N` and glued by Step 2
 (`Solid.Level`) into `CollapseData`.
 -/
+
+@[expose] public section
 
 universe u
 

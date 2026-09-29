@@ -1,5 +1,7 @@
-import Solid.Lift
-import Solid.Interpretation
+module
+
+public import Solid.Lift
+public import Solid.Interpretation
 
 /-!
 # Transport of class systems and of the axioms of `H` along tower isomorphisms
@@ -9,6 +11,8 @@ A tower isomorphism `e : T ≅ T'` carries a class system on `T` to one on
 (`IsTowerModel.transport`).  This is what identifies the tower obtained by
 interpreting `D(N)` inside `D(M)` with `D(N)` itself.
 -/
+
+@[expose] public section
 
 universe u
 

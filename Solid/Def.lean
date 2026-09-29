@@ -1,4 +1,6 @@
-import Solid.Internal
+module
+
+public import Solid.Internal
 
 /-!
 # A definability calculus for class systems
@@ -11,6 +13,8 @@ variable positions.  New variables introduced by a quantifier occupy the
 *last* position (`Fin.last`), old variables are shifted by `Fin.castSucc`;
 the `Fin.snoc` simp lemmas discharge the bookkeeping.
 -/
+
+@[expose] public section
 
 universe u
 

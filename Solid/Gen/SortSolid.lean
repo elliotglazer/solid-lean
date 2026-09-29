@@ -1,4 +1,6 @@
-import Solid.Gen.SortIso
+module
+
+public import Solid.Gen.SortIso
 
 /-!
 # Solidity of definable-sort expansions
@@ -18,6 +20,8 @@ original one with the code relations, and the graph of the extended
 isomorphism on a new sort is a composition of the graph on the coding sort
 with the encoding relations.
 -/
+
+@[expose] public section
 
 universe u
 

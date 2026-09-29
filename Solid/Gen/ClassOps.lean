@@ -1,4 +1,6 @@
-import Solid.Gen.Definable
+module
+
+public import Solid.Gen.Definable
 
 /-!
 # Derived operations of class systems
@@ -9,6 +11,8 @@ Quantifying away a block of trailing coordinates of fixed sorts
 (`comp2_mem`).  These are the closure properties used to move classes along
 codings of sorts.
 -/
+
+@[expose] public section
 
 universe u
 

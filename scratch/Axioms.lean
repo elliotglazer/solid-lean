@@ -1,5 +1,10 @@
-import Solid
-import Palomar.Solution
+module
+
+public import Solid
+public import Palomar.Solution
+
+@[expose] public section
+
 open SolidLean.Solid
 #print axioms SInterp.induced
 #print axioms TowerTheorySolid

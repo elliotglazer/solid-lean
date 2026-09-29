@@ -1,5 +1,7 @@
-import Solid.Gen.FO
-import Solid.Gen.Expansion
+module
+
+public import Solid.Gen.FO
+public import Solid.Gen.Expansion
 
 /-!
 # Clause families given by first-order formulas, and canonical expansions
@@ -16,6 +18,8 @@ Conversely every model of `H` expands canonically to a model of `T(𝔉)`
 (`ClauseFamily.expand`), so `T(𝔉)` is consistent relative to `H` and has, up
 to the reduct, exactly the models of `H`.
 -/
+
+@[expose] public section
 
 universe u
 

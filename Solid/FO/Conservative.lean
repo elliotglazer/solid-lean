@@ -1,4 +1,6 @@
-import Solid.FO.Provable
+module
+
+public import Solid.FO.Provable
 
 /-!
 # `T_L` is a conservative extension of `H`
@@ -16,6 +18,8 @@ The tool is the elimination of the defined symbols from formulas
 elimination have the same extension (`Sat_elim`), so the definable classes of
 a model of `T(𝔉)` are those of its underlying tower.
 -/
+
+@[expose] public section
 
 universe u v
 

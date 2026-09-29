@@ -1,6 +1,8 @@
-import Foundation.FirstOrder.LK.Completeness
-import Solid.FO.Bridge
-import Solid.FO.Sound
+module
+
+public import Foundation.FirstOrder.LK.Completeness
+public import Solid.FO.Bridge
+public import Solid.FO.Sound
 
 /-!
 # The single-sorted rendering, and provability by completeness
@@ -21,6 +23,8 @@ completeness theorems, this gives: a sentence is derivable in Foundation's
 sequent calculus `LK` from the rendered axioms of `T(𝔉)` iff it is true in
 every semantic model of `T(𝔉)` (`Render.provable_iff_semantic`).
 -/
+
+@[expose] public section
 
 universe u v
 

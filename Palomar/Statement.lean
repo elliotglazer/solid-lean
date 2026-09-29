@@ -1,8 +1,10 @@
+module
+
 -- GENERATED from Palomar/Challenge.lean by scripts/sync_statement.py; do not edit.
 -- The definitions of the Challenge, without its target theorem.
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Data.Fin.Tuple.Basic
-import Mathlib.Data.Set.Basic
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Data.Fin.Tuple.Basic
+public import Mathlib.Data.Set.Basic
 
 /-!
 # The tower theory `H` is solid: the statement
@@ -53,6 +55,8 @@ inductive type of its many-sorted first-order formulas, with satisfaction
 * `Solid` is Enayat's condition for `H`, with `P = J.Model` presented in `T`
   through the composite presentation.
 -/
+
+@[expose] public section
 
 universe u
 

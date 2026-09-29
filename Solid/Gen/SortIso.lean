@@ -1,4 +1,6 @@
-import Solid.Gen.SortExp
+module
+
+public import Solid.Gen.SortExp
 
 /-!
 # Extending isomorphisms of base reducts to expanded models
@@ -11,6 +13,8 @@ invariant under `h₀` (satisfaction of tower formulas is invariant under
 isomorphisms), and it respects the further symbols because their clauses
 are.
 -/
+
+@[expose] public section
 
 universe u
 

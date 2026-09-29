@@ -1,5 +1,7 @@
-import Solid.Calc.Sets
-import Solid.Calc.PrimRel
+module
+
+public import Solid.Calc.Sets
+public import Solid.Calc.PrimRel
 
 /-!
 # The sets the primitives need, in a model of `H`
@@ -8,6 +10,8 @@ Successors and ω in sort `1`, the Σ- and Sum-sets, lifting of universe
 membership, quotient sets and classes, and the recursion theorem for the
 natural numbers eliminator, in the sort models of a tower model.
 -/
+
+@[expose] public section
 
 universe u
 

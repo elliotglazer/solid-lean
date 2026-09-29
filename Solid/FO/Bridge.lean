@@ -1,4 +1,6 @@
-import Solid.FO.Axioms
+module
+
+public import Solid.FO.Axioms
 
 /-!
 # From the sentences to the semantic axioms
@@ -9,6 +11,8 @@ A structure for `F.sig` that satisfies the sentences `F.Hax` is a model of
 family given by formulas, it is a model of `T(𝔉)`
 (`ClauseFamily.isGenModel_of_models_TL`).
 -/
+
+@[expose] public section
 
 universe u
 

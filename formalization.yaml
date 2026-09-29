@@ -49,8 +49,8 @@ verification:
   comparator_config: "comparator.json"
   challenge_module: "Palomar.Challenge"
   solution_module: "Palomar.Solution"
-  lean: "v4.34.0"
-  mathlib: "v4.34.0"
+  lean: "v4.35.0-rc3"
+  mathlib: "v4.35.0-rc3"
   axiom_audit: "scratch/Axioms.lean"
 
 automation:

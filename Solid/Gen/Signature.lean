@@ -1,4 +1,6 @@
-import Solid.Gen.Core
+module
+
+public import Solid.Gen.Core
 
 /-!
 # Relational signatures, structures, and isomorphisms
@@ -9,6 +11,8 @@ encoded).  A `Str Sig` is a sorted carrier with one relation per symbol, given
 as a set of sorted tuples of the union.  A class system on a structure
 (`StrSys`) is a class system on the carrier containing the relation atoms.
 -/
+
+@[expose] public section
 
 universe u
 

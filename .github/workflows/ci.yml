@@ -42,12 +42,12 @@ jobs:
           if grep -q sorryAx axioms.txt; then echo "sorryAx found"; exit 1; fi
           grep "SolidLean.Palomar.tower_theory_solid' depends on axioms: \[propext, Classical.choice, Quot.sound\]" axioms.txt
 
-      - name: Build lean4export (tag v4.34.0) and the comparator (its last v4.34.0 revision)
+      - name: Build lean4export (tag v4.35.0-rc3) and the comparator (its v4.35.0-rc3 revision)
         run: |
-          git clone --branch v4.34.0 --depth 1 https://github.com/leanprover/lean4export.git /tmp/lean4export
+          git clone --branch v4.35.0-rc3 --depth 1 https://github.com/leanprover/lean4export.git /tmp/lean4export
           (cd /tmp/lean4export && lake build)
           git clone https://github.com/leanprover/comparator.git /tmp/comparator
-          (cd /tmp/comparator && git checkout d03acab154d269c06e60e4de7e4cc85deebff94b && lake build comparator)
+          (cd /tmp/comparator && git checkout fd5d5bcf14177b187f66d4502071268d877887c3 && lake build comparator)
 
       - name: Comparator (statement identity, permitted axioms, kernel replay; unsandboxed shim)
         run: |

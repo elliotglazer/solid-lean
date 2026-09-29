@@ -1,5 +1,7 @@
-import Solid.TDef
-import Solid.Interpretation
+module
+
+public import Solid.TDef
+public import Solid.Interpretation
 
 /-!
 # Definable graphs over presentations
@@ -11,6 +13,8 @@ presentation (`Interp.Rep_inj_iff'`), and closure properties of graphs of maps
 out of a presented tower (`PGraph`): composition with the lifts of the
 ambient tower and with the transitions of the presented tower.
 -/
+
+@[expose] public section
 
 universe u
 

@@ -1,7 +1,10 @@
-import Mathlib.Logic.Equiv.Basic
-import Mathlib.Data.Fin.VecNotation
-import Mathlib.Data.Fin.Tuple.Basic
-import Mathlib.Order.SetNotation
+module
+
+public import Mathlib.Logic.Equiv.Basic
+public import Mathlib.Data.Fin.VecNotation
+public import Mathlib.Data.Fin.Tuple.Basic
+public import Mathlib.Order.SetNotation
+public import Mathlib.Order.BooleanAlgebra.Set
 
 /-!
 # Many-sorted membership towers and class systems
@@ -20,6 +23,8 @@ model of `H` form such a system; that bridge is a separate lemma and is not
 part of this file.  Every scheme of `H` is stated for classes of the system,
 so a model of `H` in this sense is a pair `(tower, system)`.
 -/
+
+@[expose] public section
 
 universe u
 

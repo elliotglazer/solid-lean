@@ -1,5 +1,7 @@
-import Solid.SortModel
-import Solid.Def
+module
+
+public import Solid.SortModel
+public import Solid.Def
 
 /-!
 # A definability calculus for tower class systems
@@ -10,6 +12,8 @@ the tower system `𝒟`.  Quantifiers are sort-bounded.  Relations of a single
 sort certified by `Solid.Def` in the sort's class system enter through
 `TDef.lift`.
 -/
+
+@[expose] public section
 
 universe u
 

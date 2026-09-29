@@ -1,4 +1,6 @@
-import Solid.Config
+module
+
+public import Solid.Config
 
 /-!
 # Step 6: assembling the definable isomorphism `M → N`
@@ -10,6 +12,8 @@ inaccessible), every collapsed set is the image of the corresponding sort of
 is an isomorphism `M → N`, definable because it is the composite of
 definable graphs (`Config.composite_def`).
 -/
+
+@[expose] public section
 
 universe u
 

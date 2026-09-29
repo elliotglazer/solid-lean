@@ -1,5 +1,7 @@
-import Solid.Calc.Contexts
-import Solid.Calc.Semantics
+module
+
+public import Solid.Calc.Contexts
+public import Solid.Calc.Semantics
 
 /-!
 # Insertion and removal on environments; the value relation on variables
@@ -8,6 +10,8 @@ Environment operations matching `Ctx.insert` and `Ctx.sub`, their
 commutation with extension at the end, and the reading of the value
 relation on variables without a well-sortedness assumption.
 -/
+
+@[expose] public section
 
 universe u
 

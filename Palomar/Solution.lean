@@ -1,6 +1,8 @@
-import Palomar.Statement
-import Palomar.Bridge.Interp
-import Solid.Solidity
+module
+
+public import Palomar.Statement
+public import Palomar.Bridge.Interp
+public import Solid.Solidity
 
 /-!
 # The tower theory `H` is solid: the proof
@@ -15,6 +17,8 @@ definability correspond.  This file imports `Palomar.Statement`, the
 generated copy of the definitions of the Challenge, never the Challenge
 itself.
 -/
+
+@[expose] public section
 
 universe u
 

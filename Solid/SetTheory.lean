@@ -1,4 +1,6 @@
-import Solid.Tower
+module
+
+public import Solid.Tower
 
 /-!
 # Internal set theory of one sort
@@ -16,6 +18,8 @@ Mostowski collapse, Cantor's theorem, absoluteness) belong to
 `Solid.Internal` and are the substantive internal-set-theory obligations of
 draft 2 §2.
 -/
+
+@[expose] public section
 
 universe u
 

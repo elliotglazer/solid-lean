@@ -1,5 +1,7 @@
-import Solid.Calc.Eval
-import Solid.Calc.Typing
+module
+
+public import Solid.Calc.Eval
+public import Solid.Calc.Typing
 
 /-!
 # The value relation and its reading, constructor by constructor
@@ -10,6 +12,8 @@ records that `w` has the sort of the classifier.  The lemmas `Val_*` unfold
 it for each constructor into ordinary set-theoretic statements about `T`,
 which is what the soundness proof works with.
 -/
+
+@[expose] public section
 
 universe u
 

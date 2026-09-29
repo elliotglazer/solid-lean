@@ -1,7 +1,9 @@
-import Solid.FO.Notions
-import Solid.Gen.Definable
-import Solid.Gen.Expansion
-import Solid.Gen.Clauses
+module
+
+public import Solid.FO.Notions
+public import Solid.Gen.Definable
+public import Solid.Gen.Expansion
+public import Solid.Gen.Clauses
 
 /-!
 # The axioms of `H` and of `T(𝔉)` as first-order sentences
@@ -25,6 +27,8 @@ This file writes the axioms down as sentences of the many-sorted signature
 model in the semantic sense with its definable class system
 (`F.IsGenModel ⟨M, M.defSys⟩`).
 -/
+
+@[expose] public section
 
 universe u
 
@@ -209,9 +213,9 @@ namespace TF
 
 variable (n : ℕ)
 
-private abbrev h0 : IsConst (fun _ : Fin 0 => n) n := IsConst.const 0 n
-private abbrev h1 : IsConst (fun _ : Fin 1 => n) n := IsConst.const 1 n
-private abbrev h2 : IsConst (fun _ : Fin 2 => n) n := IsConst.const 2 n
+abbrev h0 : IsConst (fun _ : Fin 0 => n) n := IsConst.const 0 n
+abbrev h1 : IsConst (fun _ : Fin 1 => n) n := IsConst.const 1 n
+abbrev h2 : IsConst (fun _ : Fin 2 => n) n := IsConst.const 2 n
 
 /-- Extensionality. -/
 def extAx : TF 0 (fun _ => n) :=

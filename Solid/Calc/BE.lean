@@ -1,6 +1,8 @@
-import Solid.Gen.SortSolid
-import Solid.Gen.SortExpand
-import Solid.Calc.Theory
+module
+
+public import Solid.Gen.SortSolid
+public import Solid.Gen.SortExpand
+public import Solid.Calc.Theory
 
 /-!
 # The `B_n / E_n` presentation of `T_L` (draft 2, §6.3)
@@ -26,6 +28,8 @@ instance of `SortExp`, so it is solid by `SortExp.solid`: this is the
 New sort `2r` is `B_r` and new sort `2r + 1` is `E_r`; both are coded in
 the tower sort `r + 1`.
 -/
+
+@[expose] public section
 
 universe u
 

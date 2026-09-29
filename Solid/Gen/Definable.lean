@@ -1,4 +1,6 @@
-import Solid.Gen.Clauses
+module
+
+public import Solid.Gen.Clauses
 
 /-!
 # The class system of first-order definable relations
@@ -14,6 +16,8 @@ syntactic interpretation carries the definable classes of the interpreted
 structure to classes with definable preimages, is `GenInterp.defSys_le_induced`
 in `Solid.Gen.Translate`.)
 -/
+
+@[expose] public section
 
 universe u
 

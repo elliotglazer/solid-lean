@@ -1,6 +1,8 @@
-import Palomar.Statement
-import Solid.Gen.Definable
-import Solid.Gen.Clauses
+module
+
+public import Palomar.Statement
+public import Solid.Gen.Definable
+public import Solid.Gen.Clauses
 
 /-!
 # Bridge, part 1: towers, formulas and definability
@@ -12,6 +14,8 @@ into the formulas of the tower signature `TowerSig` and back with the same
 satisfaction, and `Palomar`'s notion of definability is membership in the
 definable class system `Str.defSys` of the tower.
 -/
+
+@[expose] public section
 
 universe u
 

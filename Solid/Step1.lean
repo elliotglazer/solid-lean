@@ -1,5 +1,7 @@
-import Solid.Config
-import Solid.Level
+module
+
+public import Solid.Config
+public import Solid.Level
 
 /-!
 # Step 1: internal presentation and well-foundedness
@@ -16,6 +18,8 @@ Well-foundedness of `R` in the sense of `N` (`wf_R`) is by pullback along
 nonempty definable subclass of the set `V(κ n)`; its foundation-minimal
 element, sent back through `i`, is `R`-minimal in `X`.
 -/
+
+@[expose] public section
 
 universe u
 

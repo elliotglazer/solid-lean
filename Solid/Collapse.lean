@@ -1,6 +1,8 @@
-import Solid.Lift
-import Solid.Graphs
-import Solid.Mostowski
+module
+
+public import Solid.Lift
+public import Solid.Graphs
+public import Solid.Mostowski
 
 /-!
 # Collapse data and its consequences (Step 4)
@@ -17,6 +19,8 @@ transfer.  With `δ n := e (n+1) (κ n)` this gives `S n = V(δ n)` (after
 lifting), inaccessibility of `δ n`, the next-inaccessible clause and the
 bottom clause (`CollapseData.isV`, `δ_inaccessible`, `δ_next`, `δ_bottom`).
 -/
+
+@[expose] public section
 
 universe u
 

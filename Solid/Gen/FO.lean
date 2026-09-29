@@ -1,4 +1,6 @@
-import Solid.Gen.Signature
+module
+
+public import Solid.Gen.Signature
 
 /-!
 # Many-sorted first-order formulas
@@ -11,6 +13,8 @@ basic facts: the relation defined by a formula belongs to every class system
 containing the relation atoms (`Formula.def_mem`), and it is invariant under
 isomorphisms (`Formula.sat_map`).
 -/
+
+@[expose] public section
 
 universe u
 

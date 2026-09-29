@@ -1,4 +1,6 @@
-import Solid.Collapse
+module
+
+public import Solid.Collapse
 
 /-!
 # The solidity configuration `M ⊳ N ⊳ P`
@@ -13,6 +15,8 @@ between `M` and `N` obtained by composing `i` with a relation admissible in
 `N` (read through the representatives) is admissible in `M`.  Every
 definability claim of Steps 1, 3, 5 and 6 is an instance.
 -/
+
+@[expose] public section
 
 universe u
 

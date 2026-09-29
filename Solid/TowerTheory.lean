@@ -1,4 +1,6 @@
-import Solid.SetTheory
+module
+
+public import Solid.SetTheory
 
 /-!
 # The tower theory `H`
@@ -15,6 +17,8 @@ Draft 2, §2.1.  A model of `H` is a tower with a class system such that
 Every scheme is stated for the classes of the system, so these are the
 axioms of `H` read schematically over a semantic notion of definability.
 -/
+
+@[expose] public section
 
 universe u
 

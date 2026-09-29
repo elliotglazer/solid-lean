@@ -1,4 +1,6 @@
-import Solid.Collapse
+module
+
+public import Solid.Collapse
 
 /-!
 # Collapses of a single sort, their lifts, and Step 2
@@ -11,6 +13,8 @@ Step 2 (`LevelCollapse.transition`): two collapses of sort `n`, the
 transition of sort `n+1`'s collapse and the lift of sort `n`'s, agree, by
 foundation applied to the definable class where they differ.
 -/
+
+@[expose] public section
 
 universe u
 

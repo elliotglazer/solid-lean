@@ -1,6 +1,8 @@
-import Solid.Calc.Substitution
-import Solid.Gen.Definable
-import Solid.TDef
+module
+
+public import Solid.Calc.Substitution
+public import Solid.Gen.Definable
+public import Solid.TDef
 
 /-!
 # Definability of the evaluator's predicates
@@ -11,6 +13,8 @@ environment as parameters keeps it a class (`TDef.fixInit`), and reading it
 on one sort makes it a class of that sort's system (`TDef.toDef1`), which is
 what Separation and Replacement in the sort models need.
 -/
+
+@[expose] public section
 
 universe u
 
