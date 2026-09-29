@@ -32,6 +32,7 @@ classification:
   arxiv:
     - "math.LO"
   msc2020:
+    - "03C62"
     - "03C40"
     - "03F25"
     - "03E30"
