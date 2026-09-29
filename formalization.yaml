@@ -1,5 +1,6 @@
-# Registry metadata (mathlib-initiative formalization metadata, v0.4 conventions).
-# Validate with a YAML 1.2 parser: the MSC codes are quoted on purpose.
+# yaml-language-server: $schema=https://raw.githubusercontent.com/mathlib-initiative/formalization.yaml/main/schema/formalization.schema.json
+# formalization.yaml v0.4, in the shape the Palomar registry validates.
+# The MSC codes are quoted on purpose: a YAML 1.2 parser reads 03E30 as a number.
 version: "v0.4"
 
 project:
@@ -22,78 +23,135 @@ project:
     development's semantic solidity theorem tower_solid.
   authors:
     - name: "Elliot Glazer"
+      github: "elliotglazer"
+  license: "Apache-2.0"
   responsible_maintainers:
     - name: "Elliot Glazer"
       github: "elliotglazer"
-  license: "Apache-2.0"
-  repository: "https://github.com/elliotglazer/solid-lean"
 
 classification:
-  arxiv:
-    - "math.LO"
-  msc2020:
-    - "03C62"
-    - "03C40"
-    - "03F25"
-    - "03E30"
-    - "03E55"
-    - "03B38"
-    - "03B35"
+  arxiv: ["math.LO"]
+  msc2020: ["03C62", "03C40", "03F25", "03E30", "03E55", "03B38", "03B35"]
 
-statements:
-  - name: "SolidLean.Palomar.tower_theory_solid"
-    file: "Palomar/Challenge.lean"
-    description: "Enayat's solidity of the tower theory H (Theorem 2.1 of the paper), in one-coordinate normal form."
+sources:
+  # The theorem is first presented by this repository: the paper and the
+  # formalization were written together, and the paper has not been published
+  # or refereed elsewhere.
+  - title: "Solid idealized Lean, Theorem 2.1: the tower theory H is solid"
+    authors:
+      - "Elliot Glazer"
+    type: original-proof
+    relationship: other
+    location: "https://github.com/elliotglazer/solid-lean/blob/main/Solid-idealized-Lean.md"
+    note: >-
+      Working paper kept in this repository.  Its Theorem 2.1 is the registered statement;
+      its Section 8 records, claim by claim, what the development checks.
+  - title: "Variations on a Visserian theme"
+    authors:
+      - "Ali Enayat"
+    type: paper
+    id: "arXiv:1702.07093"
+    location: "https://arxiv.org/abs/1702.07093"
+    relationship: background
+    note: "Definitions of tight and solid theories; solidity of ZF."
+  - title: "Corrigendum & Addendum to: Variations on a Visserian theme"
+    authors:
+      - "Ali Enayat"
+    type: paper
+    id: "arXiv:2602.15081"
+    location: "https://arxiv.org/abs/2602.15081"
+    relationship: background
+    note: >-
+      Interpretations that translate equality as an equivalence relation, and the gap in the
+      KM argument that the quotient case of the present proof avoids.
+  - title: "MathOverflow answer 507515"
+    type: web post
+    location: "https://mathoverflow.net/a/507515"
+    relationship: background
+    note: "Solidity of ZC + Ranks; origin of the no-greatest-inaccessible-below condition."
 
-verification:
-  comparator_config: "comparator.json"
-  challenge_module: "Palomar.Challenge"
-  solution_module: "Palomar.Solution"
-  lean: "v4.35.0-rc3"
-  mathlib: "v4.35.0-rc3"
-  axiom_audit: "scratch/Axioms.lean"
+related_formalizations:
+  - id: "https://github.com/leanprover-community/mathlib4"
+    relationship: builds-on
+    note: "Dependency.  The registered statement imports Mathlib.Data.Fin and Mathlib.Data.Set basics only."
+  - id: "https://github.com/FormalizedFormalLogic/Foundation"
+    relationship: builds-on
+    note: >-
+      Dependency of the provability layer Solid/FO (first-order logic with soundness and
+      completeness).  Not in the trust boundary of the registered statement.
+
+status:
+  scope: >-
+    Registered: Enayat's solidity of the tower theory H, Theorem 2.1 of the paper, for
+    interpretations in one-coordinate normal form (each interpreted sort is a definable
+    subset of one sort modulo a definable equivalence).  The reduction from tuple domains
+    to that normal form is stated in the paper and is not formalized.  The development
+    Solid/ also checks, outside the registered statement, the solidity of clause
+    expansions of H, the soundness of the annotated calculus L_ann in models of H, the
+    relational theory T_L and its B_n/E_n presentation, and the first-order provability
+    claims; the internal set tower of the paper's Section 5 and the primitive stock beyond
+    32 constants are not formalized.
+  sorry_count: 0
+  sorry_in_definitions: 0
+  axioms: []
+  main_results:
+    - "SolidLean.Palomar.tower_theory_solid (the registered statement)"
+    - "SolidLean.Solid.tower_solid (semantic solidity of H for arbitrary class systems)"
+    - "SolidLean.Calc.TL_solid, SolidLean.Calc.BE_solid (solidity of the relational theory T_L)"
+    - "SolidLean.Calc.soundness (Theorem 4.1 of the paper, semantic form)"
 
 automation:
   methods:
-    - method: "ai-assistant"
-      details: >-
-        The Lean development, including the registered statement and its proof, was written by
-        Claude (Anthropic) working under the direction of the author, who designed the theory,
-        the mathematics of the solidity proof, and the statement; every proof is checked by the
-        Lean kernel, and the comparator checks the registered statement.
+    - method: agent
+      models: ["Claude (Anthropic)"]
+      framework: "Claude Code, agentic sessions"
+      tool_setup: >-
+        AI-assisted.  The author designed the theory H, the mathematics of the solidity
+        proof, the calculus and the statement to register; Claude wrote the Lean
+        development, the registered statement and its proof in agentic sessions under the
+        author's direction, repairing the code until the Lean kernel accepted it; the author
+        reviewed the statements.  Every proof is checked by the Lean kernel, and the
+        comparator checks the registered statement.
+      cost:
+        wall_time: "not tracked"
+        spend_usd: "subscription-based"
+        hardware: "cloud sandbox of the assistant service"
+      prompting_notes: >-
+        Conversational direction: the author stated the theorems and proof strategy in
+        mathematical prose and reviewed the results; the assistant chose the Lean encoding.
+  spend_usd: "subscription-based"
+  notes: >-
+    The author supplied the mathematics and reviewed the statements; the assistant supplied
+    the Lean code and the build, judge and CI setup.
+
+fidelity:
+  divergences: >-
+    Interpretations are taken in one-coordinate normal form rather than with tuple domains;
+    the paper states the reduction and does not prove it.  Definability is membership in a
+    class system, instantiated by first-order definability with parameters.  The other
+    refinements the formalization makes to the paper are listed in the paper's Section 8
+    and in FORMALIZATION.md and do not affect the registered statement.
 
 review:
-  status: "unreviewed"
+  status: "self-assessed"
+  reviewers:
+    - "none"
+  notes: >-
+    The author audited the registered statement (Palomar/Challenge.lean) against the paper's
+    definitions.  No external mathematical review has been performed.
 
-sources:
-  - type: "paper"
-    title: "Solid idealized Lean"
-    authors: ["Elliot Glazer"]
-    url: "https://github.com/elliotglazer/solid-lean/blob/main/Solid-idealized-Lean.md"
-    relationship: "formalizes"
-    notes: "Theorem 2.1 (H is solid); the registered statement is its first-order form."
-  - type: "paper"
-    title: "Variations on a Visserian theme"
-    authors: ["Ali Enayat"]
-    url: "https://arxiv.org/abs/1702.07093"
-    relationship: "background"
-    notes: "Definitions of tight and solid theories; solidity of ZF."
-  - type: "paper"
-    title: "Corrigendum & Addendum to: Variations on a Visserian theme"
-    authors: ["Ali Enayat"]
-    url: "https://arxiv.org/abs/2602.15081"
-    relationship: "background"
-  - type: "web discussion"
-    title: "MathOverflow answer 507515"
-    url: "https://mathoverflow.net/a/507515"
-    relationship: "background"
-    notes: "Solidity of ZC + Ranks; origin of the no-greatest-inaccessible-below condition."
+alignment:
+  namespace: "SolidLean.Palomar"
+  statements:
+    - source: "Solid idealized Lean, Theorem 2.1 (H is solid)"
+      lean: "SolidLean.Palomar.tower_theory_solid"
+      module: "Palomar.Challenge"
+      status: proved
+      note: >-
+        Stated for interpretations in one-coordinate normal form with definable equivalence,
+        and for definability with parameters; proved in Palomar/Solution.lean from the
+        development's tower_solid.
 
-related_formalizations:
-  - name: "Mathlib"
-    url: "https://github.com/leanprover-community/mathlib4"
-    relationship: "dependency"
-  - name: "Foundation (FormalizedFormalLogic)"
-    url: "https://github.com/FormalizedFormalLogic/Foundation"
-    relationship: "dependency"
-    notes: "Used by Solid/FO for the provability layer; not in the trust boundary of the registered statement."
+acknowledgements: >-
+  Mathlib; the Foundation library (FormalizedFormalLogic); the Lean comparator and the
+  Palomar registry; Ali Enayat's work on solid and tight theories.
