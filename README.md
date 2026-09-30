@@ -16,6 +16,10 @@ The Lean 4 library `Solid/` checks the theorem for the relational form T_L of
 L_solid. `lake build Solid` succeeds with no `sorry`, and every main theorem
 depends only on `propext`, `Classical.choice` and `Quot.sound`.
 
+The tower half of the theorem, "H is solid" (Theorem 2.1 of the paper), is a registered
+entry of the Palomar registry: [PALOMAR-2026-09-30-000022](https://palomar-registry.org/entry?id=PALOMAR-2026-09-30-000022&version=1), version 1, verified at commit
+`337e7a5afd81ee7236c0e0dceadbc8cfc313f83f` against the trusted statement in `Palomar/Challenge.lean`.
+
 ## Layout
 
 | Path | What it is |
@@ -28,7 +32,7 @@ depends only on `propext`, `Classical.choice` and `Quot.sound`.
 | `Solid/Calc/` | The calculus L_ann: syntax, typing, evaluator clauses, semantics, soundness and adequacy, the theory T_L, the B_n/E_n presentation. |
 | `Solid/FO/` | H and T_L as first-order theories: the axioms as many-sorted sentences, their equivalence with the semantic axioms, the rendering in the Foundation library, and provability (Theorem 4.1 as an H-scheme, Claim 6.1 (i)–(ii), conservativity of T_L over H) by completeness. |
 | `Solid.lean` | Imports everything in `Solid/`. |
-| `Palomar/` | The registered statement and its proof, for the [comparator](https://github.com/leanprover/comparator) and the Palomar registry. `Challenge.lean` states Theorem 2.1, "H is solid", in about 400 lines that import only Mathlib basics, with the target left as `sorry`. `Statement.lean` is the generated copy of its definitions. `Bridge/` and `Solution.lean` prove the target from `tower_solid`. `comparator.json` at the root is the judge's configuration and `formalization.yaml` the registry metadata. |
+| `Palomar/` | The registered statement and its proof, for the [comparator](https://github.com/leanprover/comparator) and the Palomar registry. `Challenge.lean` states Theorem 2.1, "H is solid", in about 400 lines that import only Mathlib basics, with the target left as `sorry`. `Statement.lean` is the generated copy of its definitions. `Bridge/` and `Solution.lean` prove the target from `tower_solid`. `comparator.json` at the root is the judge's configuration and `formalization.yaml` the registry metadata. Registered as [PALOMAR-2026-09-30-000022](https://palomar-registry.org/entry?id=PALOMAR-2026-09-30-000022&version=1). |
 | `scratch/Axioms.lean` | `#print axioms` for every main theorem, including the registered one. |
 | `scripts/sync_statement.py` | Regenerates or checks `Palomar/Statement.lean`. |
 
@@ -39,7 +43,7 @@ depends only on `propext`, `Classical.choice` and `Quot.sound`.
 | Statement | Where |
 | --- | --- |
 | For models M ⊳ N ⊳ P of H and an M-definable isomorphism M ≅ P, there is an M-definable M ≅ N | `Solidity.lean`: `tower_solid` |
-| The same as a self-contained first-order statement in Enayat's form. The trusted file defines structures, many-sorted formulas, definability with parameters, the axioms of H with the schemes over all definable classes, interpretations in one-coordinate normal form, and definable isomorphisms; nothing from `Solid/` is trusted. | `Palomar/Challenge.lean`: `Solid`, `tower_theory_solid`; proved in `Palomar/Solution.lean` |
+| The same as a self-contained first-order statement in Enayat's form. The trusted file defines structures, many-sorted formulas, definability with parameters, the axioms of H with the schemes over all definable classes, interpretations in one-coordinate normal form, and definable isomorphisms; nothing from `Solid/` is trusted. | `Palomar/Challenge.lean`: `Solid`, `tower_theory_solid`; proved in `Palomar/Solution.lean`; registry entry [PALOMAR-2026-09-30-000022](https://palomar-registry.org/entry?id=PALOMAR-2026-09-30-000022&version=1) |
 | The axioms of H (`IsTowerModel`), class systems, interpretations, the induced class system | `TowerTheory.lean`, `Tower.lean`, `Interpretation.lean` |
 | Steps 1–6 of the proof: internal collapse, uniqueness, transport, the ladder, the finite-support obstruction, assembly | `Step1.lean` … `Step6.lean`, `Collapse.lean`, `Config.lean`, `Level.lean`, `Assemble.lean` |
 | Internal set theory of a model: rank, absoluteness, Mostowski collapse, definability calculus | `Rank.lean`, `Absolute.lean`, `Mostowski.lean`, `Def.lean`, `TDef.lean`, `SortModel.lean` |
